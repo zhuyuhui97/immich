@@ -1,5 +1,6 @@
 import { createEventEmitter } from '$lib/utils/eventemitter';
 import type { AssetResponseDto, ServerVersionResponseDto } from '@immich/sdk';
+import * as immich_sdk from '@immich/sdk';
 import { io, type Socket } from 'socket.io-client';
 import { get, writable } from 'svelte/store';
 import { user } from './user.store';
@@ -27,7 +28,7 @@ export interface Events {
 }
 
 const websocket: Socket<Events> = io({
-  path: '/api/socket.io',
+  path: immich_sdk.getBaseUrl() + '/socket.io',
   transports: ['websocket'],
   reconnection: true,
   forceNew: true,
