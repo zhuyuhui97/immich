@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import Icon from '$lib/components/elements/icon.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import type { UploadAsset } from '$lib/models/upload-asset';
   import { UploadState } from '$lib/models/upload-asset';
   import { locale } from '$lib/stores/preferences.store';
@@ -56,7 +57,7 @@
     {#if uploadAsset.state === UploadState.DUPLICATED && uploadAsset.assetId}
       <div class="flex items-center justify-between gap-1">
         <a
-          href="{AppRoute.PHOTOS}/{uploadAsset.assetId}"
+          href="{resolveRoute(AppRouteId.PHOTOS)}/{uploadAsset.assetId}"
           target="_blank"
           rel="noopener noreferrer"
           class=""

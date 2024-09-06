@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import Dropdown from '$lib/components/elements/dropdown.svelte';
   import Icon from '$lib/components/elements/icon.svelte';
   import FullScreenModal from '$lib/components/shared-components/full-screen-modal.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import {
     AlbumUserRole,
     getAllSharedLinks,
@@ -174,7 +175,7 @@
 
     {#if sharedLinks.length}
       <a
-        href={AppRoute.SHARED_LINKS}
+        href={resolveRoute(AppRouteId.SHARED_LINKS)}
         class="flex flex-col place-content-center place-items-center gap-2 hover:cursor-pointer"
       >
         <Icon path={mdiShareCircle} size={24} />

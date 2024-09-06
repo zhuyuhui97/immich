@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import Icon from '$lib/components/elements/icon.svelte';
   import TagAssetForm from '$lib/components/forms/tag-asset-form.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { isSharedLink } from '$lib/utils';
   import { removeTag, tagAssets } from '$lib/utils/asset-utils';
   import { getAssetInfo, type AssetResponseDto } from '@immich/sdk';
@@ -46,7 +47,7 @@
         <div class="flex group transition-all">
           <a
             class="inline-block h-min whitespace-nowrap pl-3 pr-1 group-hover:pl-3 py-1 text-center align-baseline leading-none text-gray-100 dark:text-immich-dark-gray bg-immich-primary dark:bg-immich-dark-primary rounded-tl-full rounded-bl-full hover:bg-immich-primary/80 dark:hover:bg-immich-dark-primary/80 transition-all"
-            href={encodeURI(`${AppRoute.TAGS}/?path=${tag.value}`)}
+            href={encodeURI(`${resolveRoute(AppRouteId.TAGS)}/?path=${tag.value}`)}
           >
             <p class="text-sm">
               {tag.value}

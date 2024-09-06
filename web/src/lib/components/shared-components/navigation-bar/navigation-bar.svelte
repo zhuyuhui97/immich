@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { resolveRoute } from '$app/paths';
   import LinkButton from '$lib/components/elements/buttons/link-button.svelte';
   import SkipLink from '$lib/components/elements/buttons/skip-link.svelte';
   import Icon from '$lib/components/elements/icon.svelte';
@@ -11,7 +12,7 @@
   import { mdiCog, mdiMagnify, mdiTrayArrowUp } from '@mdi/js';
   import { createEventDispatcher } from 'svelte';
   import { fade, fly } from 'svelte/transition';
-  import { AppRoute } from '../../../constants';
+  import { AppRouteId } from '../../../constants';
   import ImmichLogo from '../immich-logo.svelte';
   import SearchBar from '../search-bar/search-bar.svelte';
   import ThemeButton from '../theme-button.svelte';
@@ -50,7 +51,7 @@
   <div
     class="grid h-full grid-cols-[theme(spacing.18)_auto] items-center border-b bg-immich-bg py-2 dark:border-b-immich-dark-gray dark:bg-immich-dark-bg md:grid-cols-[theme(spacing.64)_auto]"
   >
-    <a data-sveltekit-preload-data="hover" class="ml-4" href={AppRoute.PHOTOS}>
+    <a data-sveltekit-preload-data="hover" class="ml-4" href={resolveRoute(AppRouteId.PHOTOS)}>
       <ImmichLogo width="55%" noText={innerWidth < 768} />
     </a>
     <div class="flex justify-between gap-16 pr-6">
@@ -63,7 +64,7 @@
       <section class="flex place-items-center justify-end gap-4 max-sm:w-full">
         {#if $featureFlags.search}
           <CircleIconButton
-            href={AppRoute.SEARCH}
+            href={resolveRoute(AppRouteId.SEARCH)}
             id="search-button"
             class="ml-4 sm:hidden"
             title={$t('go_to_search')}
@@ -87,7 +88,7 @@
         {#if $user.isAdmin}
           <a
             data-sveltekit-preload-data="hover"
-            href={AppRoute.ADMIN_USER_MANAGEMENT}
+            href={resolveRoute(AppRouteId.ADMIN_USER_MANAGEMENT)}
             aria-label={$t('administration')}
             aria-current={$page.url.pathname.includes('/admin') ? 'page' : null}
           >

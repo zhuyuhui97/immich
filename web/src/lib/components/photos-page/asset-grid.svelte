@@ -2,7 +2,7 @@
   import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
   import { shortcuts, type ShortcutOptions } from '$lib/actions/shortcut';
   import type { Action } from '$lib/components/asset-viewer/actions/action';
-  import { AppRoute, AssetAction } from '$lib/constants';
+  import { AppRouteId, AssetAction } from '$lib/constants';
   import type { AssetInteractionStore } from '$lib/stores/asset-interaction.store';
   import { assetViewingStore } from '$lib/stores/asset-viewing.store';
   import {
@@ -473,7 +473,7 @@
     const shortcuts: ShortcutOptions[] = [
       { shortcut: { key: 'Escape' }, onShortcut: () => dispatch('escape') },
       { shortcut: { key: '?', shift: true }, onShortcut: () => (showShortcuts = !showShortcuts) },
-      { shortcut: { key: '/' }, onShortcut: () => goto(AppRoute.EXPLORE) },
+      { shortcut: { key: '/' }, onShortcut: () => goto(resolveRoute(AppRouteId.EXPLORE)) },
       { shortcut: { key: 'A', ctrl: true }, onShortcut: () => selectAllAssets($assetStore, assetInteractionStore) },
       { shortcut: { key: 'PageDown' }, preventDefault: false, onShortcut: focusElement },
       { shortcut: { key: 'PageUp' }, preventDefault: false, onShortcut: focusElement },

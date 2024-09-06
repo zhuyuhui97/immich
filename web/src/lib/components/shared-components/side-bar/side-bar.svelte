@@ -29,6 +29,7 @@
   import { t } from 'svelte-i18n';
   import BottomInfo from '$lib/components/shared-components/side-bar/bottom-info.svelte';
   import { preferences } from '$lib/stores/user.store';
+  import { AppRouteId } from '$lib/constants';
 
   let isArchiveSelected: boolean;
   let isFavoritesSelected: boolean;
@@ -44,7 +45,7 @@
   <nav aria-label={$t('primary')}>
     <SideBarLink
       title={$t('photos')}
-      routeId="/(user)/photos"
+      routeId={AppRouteId.PHOTOS}
       bind:isSelected={isPhotosSelected}
       icon={isPhotosSelected ? mdiImageMultiple : mdiImageMultipleOutline}
     >
@@ -54,13 +55,13 @@
     </SideBarLink>
 
     {#if $featureFlags.search}
-      <SideBarLink title={$t('explore')} routeId="/(user)/explore" icon={mdiMagnify} />
+      <SideBarLink title={$t('explore')} routeId={AppRouteId.SEARCH} icon={mdiMagnify} />
     {/if}
 
     {#if $featureFlags.map}
       <SideBarLink
         title={$t('map')}
-        routeId="/(user)/map"
+        routeId={AppRouteId.MAP}
         bind:isSelected={isMapSelected}
         icon={isMapSelected ? mdiMap : mdiMapOutline}
       />
@@ -69,7 +70,7 @@
     {#if $preferences.people.enabled && $preferences.people.sidebarWeb}
       <SideBarLink
         title={$t('people')}
-        routeId="/(user)/people"
+        routeId={AppRouteId.PEOPLE}
         bind:isSelected={isPeopleSelected}
         icon={isPeopleSelected ? mdiAccount : mdiAccountOutline}
       />
@@ -77,7 +78,7 @@
 
     <SideBarLink
       title={$t('sharing')}
-      routeId="/(user)/sharing"
+      routeId={AppRouteId.SHARING}
       icon={isSharingSelected ? mdiAccountMultiple : mdiAccountMultipleOutline}
       bind:isSelected={isSharingSelected}
     >
@@ -93,7 +94,7 @@
 
     <SideBarLink
       title={$t('favorites')}
-      routeId="/(user)/favorites"
+      routeId={AppRouteId.FAVORITES}
       icon={isFavoritesSelected ? mdiHeart : mdiHeartOutline}
       bind:isSelected={isFavoritesSelected}
     >
@@ -102,30 +103,30 @@
       </svelte:fragment>
     </SideBarLink>
 
-    <SideBarLink title={$t('albums')} routeId="/(user)/albums" icon={mdiImageAlbum} flippedLogo>
+    <SideBarLink title={$t('albums')} routeId={AppRouteId.ALBUMS} icon={mdiImageAlbum} flippedLogo>
       <svelte:fragment slot="moreInformation">
         <MoreInformationAlbums albumType="owned" />
       </svelte:fragment>
     </SideBarLink>
 
     {#if $preferences.tags.enabled && $preferences.tags.sidebarWeb}
-      <SideBarLink title={$t('tags')} routeId="/(user)/tags" icon={mdiTagMultipleOutline} flippedLogo />
+      <SideBarLink title={$t('tags')} routeId={AppRouteId.TAGS} icon={mdiTagMultipleOutline} flippedLogo />
     {/if}
 
     {#if $preferences.folders.enabled && $preferences.folders.sidebarWeb}
-      <SideBarLink title={$t('folders')} routeId="/(user)/folders" icon={mdiFolderOutline} flippedLogo />
+      <SideBarLink title={$t('folders')} routeId={AppRouteId.FOLDERS} icon={mdiFolderOutline} flippedLogo />
     {/if}
 
     <SideBarLink
       title={$t('utilities')}
-      routeId="/(user)/utilities"
+      routeId={AppRouteId.UTILITIES}
       bind:isSelected={isUtilitiesSelected}
       icon={isUtilitiesSelected ? mdiToolbox : mdiToolboxOutline}
     ></SideBarLink>
 
     <SideBarLink
       title={$t('archive')}
-      routeId="/(user)/archive"
+      routeId={AppRouteId.ARCHIVE}
       bind:isSelected={isArchiveSelected}
       icon={isArchiveSelected ? mdiArchiveArrowDown : mdiArchiveArrowDownOutline}
     >
@@ -137,7 +138,7 @@
     {#if $featureFlags.trash}
       <SideBarLink
         title={$t('trash')}
-        routeId="/(user)/trash"
+        routeId={AppRouteId.TRASH}
         bind:isSelected={isTrashSelected}
         icon={isTrashSelected ? mdiTrashCan : mdiTrashCanOutline}
       >

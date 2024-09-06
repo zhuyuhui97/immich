@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import { isSearchEnabled, preventRaceConditionSearchBar, savedSearchTerms } from '$lib/stores/search.store';
   import { mdiClose, mdiMagnify, mdiTune } from '@mdi/js';
   import SearchHistoryBox from './search-history-box.svelte';
@@ -39,7 +40,7 @@
     closeDropdown();
     showFilter = false;
     $isSearchEnabled = false;
-    await goto(`${AppRoute.SEARCH}?${params}`);
+    await goto(`${resolveRoute(AppRouteId.SEARCH)}?${params}`);
   };
 
   const clearSearchTerm = (searchTerm: string) => {
@@ -146,7 +147,7 @@
     draggable="false"
     autocomplete="off"
     class="select-text text-sm"
-    action={AppRoute.SEARCH}
+    action={resolveRoute(AppRouteId.SEARCH)}
     on:reset={() => (value = '')}
     on:submit|preventDefault={onSubmit}
     on:focusin={onFocusIn}

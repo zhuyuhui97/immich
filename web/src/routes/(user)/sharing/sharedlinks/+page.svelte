@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import { goto } from '$app/navigation';
   import ControlAppBar from '$lib/components/shared-components/control-app-bar.svelte';
   import CreateSharedLinkModal from '$lib/components/shared-components/create-share-link-modal/create-shared-link-modal.svelte';
@@ -7,7 +8,7 @@
     NotificationType,
   } from '$lib/components/shared-components/notification/notification';
   import SharedLinkCard from '$lib/components/sharedlinks-page/shared-link-card.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { handleError } from '$lib/utils/handle-error';
   import { getAllSharedLinks, removeSharedLink, type SharedLinkResponseDto } from '@immich/sdk';
   import { mdiArrowLeft } from '@mdi/js';
@@ -52,7 +53,7 @@
   };
 </script>
 
-<ControlAppBar backIcon={mdiArrowLeft} on:close={() => goto(AppRoute.SHARING)}>
+<ControlAppBar backIcon={mdiArrowLeft} on:close={() => goto(resolveRoute(AppRouteId.SHARING))}>
   <svelte:fragment slot="leading">{$t('shared_links')}</svelte:fragment>
 </ControlAppBar>
 

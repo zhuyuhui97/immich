@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { AppRoute, QueryParameter } from '$lib/constants';
+  import { resolveRoute } from '$app/paths';
+  import { AppRouteId, QueryParameter } from '$lib/constants';
   import { getPeopleThumbnailUrl } from '$lib/utils';
   import { type PersonResponseDto } from '@immich/sdk';
   import {
@@ -42,7 +43,7 @@
   use:focusOutside={{ onFocusOut: () => (showVerticalDots = false) }}
 >
   <a
-    href="{AppRoute.PEOPLE}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={AppRoute.PEOPLE}"
+    href="{resolveRoute(AppRouteId.PEOPLE)}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={resolveRoute(AppRouteId.PEOPLE)}"
     draggable="false"
     on:focus={() => (showVerticalDots = true)}
   >

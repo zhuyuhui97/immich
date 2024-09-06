@@ -1,6 +1,7 @@
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
-import { AppRoute } from '$lib/constants';
+import { resolveRoute } from '$app/paths';
+import { AppRouteId } from '$lib/constants';
 import { getAssetInfo } from '@immich/sdk';
 import type { NavigationTarget } from '@sveltejs/kit';
 import { get } from 'svelte/store';
@@ -30,7 +31,7 @@ function currentUrlWithoutAsset() {
   // This contains special casing for the /photos/:assetId route, which hangs directly
   // off / instead of a subpath, unlike every other asset-containing route.
   return isPhotosRoute($page.route.id)
-    ? AppRoute.PHOTOS + $page.url.search
+    ? resolveRoute(AppRouteId.PHOTOS) + $page.url.search
     : $page.url.pathname.replace(/(\/photos.*)$/, '') + $page.url.search;
 }
 
@@ -43,7 +44,7 @@ export function currentUrlReplaceAssetId(assetId: string) {
   // this contains special casing for the /photos/:assetId photos route, which hangs directly
   // off / instead of a subpath, unlike every other asset-containing route.
   return isPhotosRoute($page.route.id)
-    ? `${AppRoute.PHOTOS}/${assetId}${searchparams}`
+    ? `${resolveRoute(AppRouteId.PHOTOS)}/${assetId}${searchparams}`
     : `${$page.url.pathname.replace(/(\/photos.*)$/, '')}/photos/${assetId}${searchparams}`;
 }
 

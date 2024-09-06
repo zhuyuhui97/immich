@@ -1,10 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import UserPageLayout from '$lib/components/layouts/user-page-layout.svelte';
   import MapSettingsModal from '$lib/components/map-page/map-settings-modal.svelte';
   import Map from '$lib/components/shared-components/map/map.svelte';
   import Portal from '$lib/components/shared-components/portal/portal.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { assetViewingStore } from '$lib/stores/asset-viewing.store';
   import type { MapSettings } from '$lib/stores/preferences.store';
   import { mapSettings } from '$lib/stores/preferences.store';
@@ -37,7 +38,7 @@
   });
 
   $: if (!$featureFlags.map) {
-    handlePromiseError(goto(AppRoute.PHOTOS));
+    handlePromiseError(goto(resolveRoute(AppRouteId.PHOTOS)));
   }
   const omit = (obj: MapSettings, key: string) => {
     return Object.fromEntries(Object.entries(obj).filter(([k]) => k !== key));

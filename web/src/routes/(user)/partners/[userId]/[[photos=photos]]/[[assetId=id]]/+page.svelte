@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import AddToAlbum from '$lib/components/photos-page/actions/add-to-album.svelte';
   import CreateSharedLink from '$lib/components/photos-page/actions/create-shared-link.svelte';
   import DownloadAction from '$lib/components/photos-page/actions/download-action.svelte';
@@ -7,7 +8,7 @@
   import ButtonContextMenu from '$lib/components/shared-components/context-menu/button-context-menu.svelte';
   import AssetSelectControlBar from '$lib/components/photos-page/asset-select-control-bar.svelte';
   import ControlAppBar from '$lib/components/shared-components/control-app-bar.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { createAssetInteractionStore } from '$lib/stores/asset-interaction.store';
   import { AssetStore } from '$lib/stores/assets.store';
   import { onDestroy } from 'svelte';
@@ -38,7 +39,7 @@
       <DownloadAction />
     </AssetSelectControlBar>
   {:else}
-    <ControlAppBar showBackButton backIcon={mdiArrowLeft} on:close={() => goto(AppRoute.SHARING)}>
+    <ControlAppBar showBackButton backIcon={mdiArrowLeft} on:close={() => goto(resolveRoute(AppRouteId.SHARING))}>
       <svelte:fragment slot="leading">
         <p class="whitespace-nowrap text-immich-fg dark:text-immich-dark-fg">
           {data.partner.name}'s photos

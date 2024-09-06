@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import Icon from '$lib/components/elements/icon.svelte';
-  import { ActionQueryParameterValue, AppRoute, QueryParameter } from '$lib/constants';
+  import { ActionQueryParameterValue, AppRouteId, QueryParameter } from '$lib/constants';
   import { handleError } from '$lib/utils/handle-error';
   import { getAllPeople, getPerson, mergePerson, type PersonResponseDto } from '@immich/sdk';
   import { mdiCallMerge, mdiMerge, mdiSwapHorizontal } from '@mdi/js';
@@ -44,7 +44,7 @@
   const handleSwapPeople = async () => {
     [person, selectedPeople[0]] = [selectedPeople[0], person];
     $page.url.searchParams.set(QueryParameter.ACTION, ActionQueryParameterValue.MERGE);
-    await goto(`${AppRoute.PEOPLE}/${person.id}?${$page.url.searchParams.toString()}`);
+    await goto(`${resolveRoute(AppRouteId.PEOPLE)}/${person.id}?${$page.url.searchParams.toString()}`);
   };
 
   const onSelect = (selected: PersonResponseDto) => {

@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import Icon from '$lib/components/elements/icon.svelte';
-  import { AppRoute, timeBeforeShowLoadingSpinner } from '$lib/constants';
+  import { AppRouteId, timeBeforeShowLoadingSpinner } from '$lib/constants';
   import { getAssetThumbnailUrl, handlePromiseError } from '$lib/utils';
   import { getAssetType } from '$lib/utils/asset-utils';
   import { autoGrowHeight } from '$lib/actions/autogrow';
@@ -179,7 +180,7 @@
 
               <div class="w-full leading-4 overflow-hidden self-center break-words text-sm">{reaction.comment}</div>
               {#if assetId === undefined && reaction.assetId}
-                <a class="aspect-square w-[75px] h-[75px]" href="{AppRoute.ALBUMS}/{albumId}/photos/{reaction.assetId}">
+                <a class="aspect-square w-[75px] h-[75px]" href="{resolveRoute(AppRouteId.ALBUMS)}/{albumId}/photos/{reaction.assetId}">
                   <img
                     class="rounded-lg w-[75px] h-[75px] object-cover"
                     src={getAssetThumbnailUrl(reaction.assetId)}
@@ -231,7 +232,7 @@
                 {#if assetId === undefined && reaction.assetId}
                   <a
                     class="aspect-square w-[75px] h-[75px]"
-                    href="{AppRoute.ALBUMS}/{albumId}/photos/{reaction.assetId}"
+                    href="{resolveRoute(AppRouteId.ALBUMS)}/{albumId}/photos/{reaction.assetId}"
                   >
                     <img
                       class="rounded-lg w-[75px] h-[75px] object-cover"

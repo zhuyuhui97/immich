@@ -1,6 +1,7 @@
 import { goto } from '$app/navigation';
+import { resolveRoute } from '$app/paths';
 import { dialogController } from '$lib/components/shared-components/dialog/dialog';
-import { AppRoute } from '$lib/constants';
+import { AppRouteId } from '$lib/constants';
 import {
   AlbumFilter,
   AlbumGroupBy,
@@ -40,7 +41,7 @@ export const createAlbum = async (name?: string, assetIds?: string[]) => {
 export const createAlbumAndRedirect = async (name?: string, assetIds?: string[]) => {
   const newAlbum = await createAlbum(name, assetIds);
   if (newAlbum) {
-    await goto(`${AppRoute.ALBUMS}/${newAlbum.id}`);
+    await goto(`${resolveRoute(AppRouteId.ALBUMS)}/${newAlbum.id}`);
   }
 };
 

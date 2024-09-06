@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
   import type { Action } from '$lib/components/asset-viewer/actions/action';
   import Thumbnail from '$lib/components/assets/thumbnail/thumbnail.svelte';
-  import { AppRoute, AssetAction } from '$lib/constants';
+  import { AppRouteId, AssetAction } from '$lib/constants';
   import { assetViewingStore } from '$lib/stores/asset-viewing.store';
   import type { Viewport } from '$lib/stores/assets.store';
   import { getAssetRatio } from '$lib/utils/asset-utils';
@@ -81,7 +81,7 @@
         );
         assets = assets;
         if (assets.length === 0) {
-          await goto(AppRoute.PHOTOS);
+          await goto(resolveRoute(AppRouteId.PHOTOS));
         } else if (currentViewAssetIndex === assets.length) {
           await handlePrevious();
         } else {

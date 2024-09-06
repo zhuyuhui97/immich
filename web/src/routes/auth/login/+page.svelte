@@ -1,8 +1,9 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import LoginForm from '$lib/components/forms/login-form.svelte';
   import FullscreenContainer from '$lib/components/shared-components/fullscreen-container.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { featureFlags, serverConfig } from '$lib/stores/server-config.store';
   import type { PageData } from './$types';
 
@@ -17,9 +18,9 @@
     </p>
 
     <LoginForm
-      onSuccess={async () => await goto(AppRoute.PHOTOS, { invalidateAll: true })}
-      onFirstLogin={async () => await goto(AppRoute.AUTH_CHANGE_PASSWORD)}
-      onOnboarding={async () => await goto(AppRoute.AUTH_ONBOARDING)}
+      onSuccess={async () => await goto(resolveRoute(AppRouteId.PHOTOS), { invalidateAll: true })}
+      onFirstLogin={async () => await goto(resolveRoute(AppRouteId.AUTH_CHANGE_PASSWORD))}
+      onOnboarding={async () => await goto(resolveRoute(AppRouteId.AUTH_ONBOARDING))}
     />
   </FullscreenContainer>
 {/if}

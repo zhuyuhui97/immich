@@ -17,7 +17,7 @@
     notificationController,
     NotificationType,
   } from '$lib/components/shared-components/notification/notification';
-  import { ActionQueryParameterValue, AppRoute, QueryParameter } from '$lib/constants';
+  import { ActionQueryParameterValue, AppRouteId, QueryParameter } from '$lib/constants';
   import { locale } from '$lib/stores/preferences.store';
   import { websocketEvents } from '$lib/stores/websocket';
   import { handlePromiseError } from '$lib/utils';
@@ -194,7 +194,7 @@
 
   const handleMergePeople = async (detail: PersonResponseDto) => {
     await goto(
-      `${AppRoute.PEOPLE}/${detail.id}?${QueryParameter.ACTION}=${ActionQueryParameterValue.MERGE}&${QueryParameter.PREVIOUS_ROUTE}=${AppRoute.PEOPLE}`,
+      `${resolveRoute(AppRouteId.PEOPLE)}/${detail.id}?${QueryParameter.ACTION}=${ActionQueryParameterValue.MERGE}&${QueryParameter.PREVIOUS_ROUTE}=${resolveRoute(AppRouteId.PEOPLE)}`,
     );
   };
 

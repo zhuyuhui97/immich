@@ -5,7 +5,7 @@
   import OnboardingPrivacy from '$lib/components/onboarding-page/onboarding-privacy.svelte';
   import OnboadingStorageTemplate from '$lib/components/onboarding-page/onboarding-storage-template.svelte';
   import OnboardingTheme from '$lib/components/onboarding-page/onboarding-theme.svelte';
-  import { AppRoute, QueryParameter } from '$lib/constants';
+  import { AppRouteId, QueryParameter } from '$lib/constants';
   import { retrieveServerConfig } from '$lib/stores/server-config.store';
   import { updateAdminOnboarding } from '@immich/sdk';
 
@@ -37,17 +37,17 @@
     if (index >= onboardingSteps.length - 1) {
       await updateAdminOnboarding({ adminOnboardingUpdateDto: { isOnboarded: true } });
       await retrieveServerConfig();
-      await goto(AppRoute.PHOTOS);
+      await goto(resolveRoute(AppRouteId.PHOTOS));
     } else {
       index++;
-      await goto(`${AppRoute.AUTH_ONBOARDING}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
+      await goto(`${resolveRoute(AppRouteId.AUTH_ONBOARDING)}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
     }
   };
 
   const handlePrevious = async () => {
     if (index >= 1) {
       index--;
-      await goto(`${AppRoute.AUTH_ONBOARDING}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
+      await goto(`${resolveRoute(AppRouteId.AUTH_ONBOARDING)}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
     }
   };
 </script>

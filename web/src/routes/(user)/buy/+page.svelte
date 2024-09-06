@@ -1,9 +1,10 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import UserPageLayout from '$lib/components/layouts/user-page-layout.svelte';
   import LicenseActivationSuccess from '$lib/components/shared-components/purchasing/purchase-activation-success.svelte';
   import LicenseContent from '$lib/components/shared-components/purchasing/purchase-content.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { t } from 'svelte-i18n';
   import type { PageData } from './$types';
   import Icon from '$lib/components/elements/icon.svelte';
@@ -34,7 +35,7 @@
       {/if}
 
       {#if showLicenseActivated || data.isActivated === true}
-        <LicenseActivationSuccess onDone={() => goto(AppRoute.PHOTOS, { replaceState: false })} />
+        <LicenseActivationSuccess onDone={() => goto(resolveRoute(AppRouteId.PHOTOS), { replaceState: false })} />
       {:else}
         <LicenseContent
           onActivate={() => {

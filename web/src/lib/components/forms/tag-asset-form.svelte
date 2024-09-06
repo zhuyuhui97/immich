@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import { mdiClose, mdiTag } from '@mdi/js';
   import { t } from 'svelte-i18n';
   import Button from '../elements/buttons/button.svelte';
@@ -7,7 +8,7 @@
   import { onMount } from 'svelte';
   import { getAllTags, type TagResponseDto } from '@immich/sdk';
   import Icon from '$lib/components/elements/icon.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import FormatMessage from '$lib/components/i18n/format-message.svelte';
 
   export let onTag: (tagIds: string[]) => void;
@@ -43,7 +44,7 @@
   <div class="text-sm">
     <p>
       <FormatMessage key="tag_not_found_question" let:message>
-        <a href={AppRoute.TAGS} class="text-immich-primary dark:text-immich-dark-primary underline">
+        <a href={resolveRoute(AppRouteId.TAGS)} class="text-immich-primary dark:text-immich-dark-primary underline">
           {message}
         </a>
       </FormatMessage>

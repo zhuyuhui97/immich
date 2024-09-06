@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import Icon from '$lib/components/elements/icon.svelte';
   import { mdiClose, mdiInformationOutline } from '@mdi/js';
   import Portal from '$lib/components/shared-components/portal/portal.svelte';
@@ -8,7 +9,7 @@
   import { purchaseStore } from '$lib/stores/purchase.store';
   import { t } from 'svelte-i18n';
   import { goto } from '$app/navigation';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { getAccountAge } from '$lib/utils/auth';
   import { fade } from 'svelte/transition';
   import ImmichLogo from '$lib/components/shared-components/immich-logo.svelte';
@@ -79,7 +80,7 @@
 <div class="hidden md:block license-status pl-4 text-sm">
   {#if $isPurchased && $preferences.purchase.showSupportBadge}
     <button
-      on:click={() => goto(`${AppRoute.USER_SETTINGS}?isOpen=user-purchase-settings`)}
+      on:click={() => goto(`${resolveRoute(AppRouteId.USER_SETTINGS)}?isOpen=user-purchase-settings`)}
       class="w-full"
       type="button"
     >

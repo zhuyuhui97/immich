@@ -1,7 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import LoadingSpinner from '$lib/components/shared-components/loading-spinner.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { featureFlags, serverConfig } from '$lib/stores/server-config.store';
   import { oauth } from '$lib/utils';
   import { getServerErrorMessage, handleError } from '$lib/utils/handle-error';
@@ -43,7 +44,7 @@
 
     try {
       if ($featureFlags.oauthAutoLaunch && !oauth.isAutoLaunchDisabled(window.location)) {
-        await goto(`${AppRoute.AUTH_LOGIN}?autoLaunch=0`, { replaceState: true });
+        await goto(`${resolveRoute(AppRouteId.AUTH_LOGIN)}?autoLaunch=0`, { replaceState: true });
         await oauth.authorize(window.location);
         return;
       }

@@ -1,6 +1,7 @@
 <script lang="ts">
   import LoadingSpinner from '$lib/components/shared-components/loading-spinner.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
+  import { resolveRoute } from '$app/paths';
   import { user } from '$lib/stores/user.store';
   import {
     getStorageTemplateOptions,
@@ -234,7 +235,7 @@
                       values={{ job: $t('admin.storage_template_migration_job') }}
                       let:message
                     >
-                      <a href={AppRoute.ADMIN_JOBS} class="text-immich-primary dark:text-immich-dark-primary">
+                      <a href={resolveRoute(AppRouteId.ADMIN_JOBS)} class="text-immich-primary dark:text-immich-dark-primary">
                         {message}
                       </a>
                     </FormatMessage>

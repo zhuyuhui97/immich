@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import { flip } from 'svelte/animate';
   import { slide } from 'svelte/transition';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import type { AlbumResponseDto } from '@immich/sdk';
   import { albumViewSettings } from '$lib/stores/preferences.store';
   import type { ContextMenuPosition } from '$lib/utils/context-menu';
@@ -54,7 +55,7 @@
       {#each albums as album, index (album.id)}
         <a
           data-sveltekit-preload-data="hover"
-          href="{AppRoute.ALBUMS}/{album.id}"
+          href="{resolveRoute(AppRouteId.ALBUMS)}/{album.id}"
           animate:flip={{ duration: 400 }}
           on:contextmenu|preventDefault={(e) => showContextMenu({ x: e.x, y: e.y }, album)}
         >

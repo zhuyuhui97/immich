@@ -1,4 +1,5 @@
 import { browser } from '$app/environment';
+import { resolveRoute } from '$app/paths';
 import { purchaseStore } from '$lib/stores/purchase.store';
 import { serverInfo } from '$lib/stores/server-info.store';
 import { preferences as preferences$, user as user$ } from '$lib/stores/user.store';
@@ -6,7 +7,7 @@ import { getAboutInfo, getMyPreferences, getMyUser, getStorage } from '@immich/s
 import { redirect } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
 import { get } from 'svelte/store';
-import { AppRoute } from '../constants';
+import { AppRouteId } from '../constants';
 
 export interface AuthOptions {
   admin?: true;
@@ -59,11 +60,11 @@ export const authenticate = async (options?: AuthOptions) => {
   }
 
   if (!user) {
-    redirect(302, AppRoute.AUTH_LOGIN);
+    redirect(302, resolveRoute(AppRouteId.AUTH_LOGIN));
   }
 
   if (adminRoute && !user.isAdmin) {
-    redirect(302, AppRoute.PHOTOS);
+    redirect(302, resolveRoute(AppRouteId.PHOTOS));
   }
 };
 

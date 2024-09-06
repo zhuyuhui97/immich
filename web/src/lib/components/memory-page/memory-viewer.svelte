@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { resolveRoute } from '$app/paths';
   import { shortcuts } from '$lib/actions/shortcut';
 
   import CircleIconButton from '$lib/components/elements/buttons/circle-icon-button.svelte';
@@ -16,7 +17,7 @@
   import AssetSelectControlBar from '$lib/components/photos-page/asset-select-control-bar.svelte';
   import ControlAppBar from '$lib/components/shared-components/control-app-bar.svelte';
   import GalleryViewer from '$lib/components/shared-components/gallery-viewer/gallery-viewer.svelte';
-  import { AppRoute, QueryParameter } from '$lib/constants';
+  import { AppRouteId, QueryParameter } from '$lib/constants';
   import { type Viewport } from '$lib/stores/assets.store';
   import { memoryStore } from '$lib/stores/memory.store';
   import { getAssetThumbnailUrl, handlePromiseError, memoryLaneTitle } from '$lib/utils';
@@ -157,7 +158,7 @@
     { shortcut: { key: 'd' }, onShortcut: () => canGoForward && toNext() },
     { shortcut: { key: 'ArrowLeft' }, onShortcut: () => canGoBack && toPrevious() },
     { shortcut: { key: 'a' }, onShortcut: () => canGoBack && toPrevious() },
-    { shortcut: { key: 'Escape' }, onShortcut: () => goto(AppRoute.PHOTOS) },
+    { shortcut: { key: 'Escape' }, onShortcut: () => goto(resolveRoute(AppRouteId.PHOTOS)) },
   ]}
 />
 
@@ -187,7 +188,7 @@
 
 <section id="memory-viewer" class="w-full bg-immich-dark-gray" bind:this={memoryWrapper}>
   {#if currentMemory}
-    <ControlAppBar on:close={() => goto(AppRoute.PHOTOS)} forceDark>
+    <ControlAppBar on:close={() => goto(resolveRoute(AppRouteId.PHOTOS))} forceDark>
       <svelte:fragment slot="leading">
         <p class="text-lg">
           {$memoryLaneTitle(currentMemory.yearsAgo)}
@@ -309,7 +310,7 @@
               class:opacity-100={!galleryInView}
             >
               <CircleIconButton
-                href="{AppRoute.PHOTOS}?at={currentAsset.id}"
+                href="{resolveRoute(AppRouteId.PHOTOS)}?at={currentAsset.id}"
                 icon={mdiImageSearch}
                 title={$t('view_in_timeline')}
                 color="light"

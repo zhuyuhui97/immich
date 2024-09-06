@@ -16,7 +16,7 @@
   import ControlAppBar from '$lib/components/shared-components/control-app-bar.svelte';
   import GalleryViewer from '$lib/components/shared-components/gallery-viewer/gallery-viewer.svelte';
   import SearchBar from '$lib/components/shared-components/search-bar/search-bar.svelte';
-  import { AppRoute, QueryParameter } from '$lib/constants';
+  import { AppRouteId, QueryParameter } from '$lib/constants';
   import { assetViewingStore } from '$lib/stores/asset-viewing.store';
   import { preventRaceConditionSearchBar } from '$lib/stores/search.store';
   import { shortcut } from '$lib/actions/shortcut';
@@ -49,7 +49,7 @@
   // The GalleryViewer pushes it's own history state, which causes weird
   // behavior for history.back(). To prevent that we store the previous page
   // manually and navigate back to that.
-  let previousRoute = AppRoute.EXPLORE as string;
+  let previousRoute = resolveRoute(AppRouteId.EXPLORE) as string;
 
   let nextPage: number | null = 1;
   let searchResultAlbums: AlbumResponseDto[] = [];
@@ -88,11 +88,11 @@
     const route = from?.route?.id;
 
     if (isPeopleRoute(route)) {
-      previousRoute = AppRoute.PHOTOS;
+      previousRoute = resolveRoute(AppRouteId.PHOTOS);
     }
 
     if (isAlbumsRoute(route)) {
-      previousRoute = AppRoute.EXPLORE;
+      previousRoute = resolveRoute(AppRouteId.EXPLORE);
     }
 
     tick()

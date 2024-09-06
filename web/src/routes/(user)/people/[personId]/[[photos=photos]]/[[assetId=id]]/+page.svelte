@@ -25,7 +25,7 @@
     NotificationType,
     notificationController,
   } from '$lib/components/shared-components/notification/notification';
-  import { AppRoute, QueryParameter } from '$lib/constants';
+  import { AppRouteId, QueryParameter } from '$lib/constants';
   import { createAssetInteractionStore } from '$lib/stores/asset-interaction.store';
   import { assetViewingStore } from '$lib/stores/asset-viewing.store';
   import { AssetStore } from '$lib/stores/assets.store';
@@ -89,7 +89,7 @@
 
   let viewMode: ViewMode = ViewMode.VIEW_ASSETS;
   let isEditingName = false;
-  let previousRoute: string = AppRoute.EXPLORE;
+  let previousRoute: string = resolveRoute(AppRouteId.EXPLORE);
   let people: PersonResponseDto[] = [];
   let personMerge1: PersonResponseDto;
   let personMerge2: PersonResponseDto;
@@ -231,7 +231,7 @@
         refreshAssetGrid = !refreshAssetGrid;
         return;
       }
-      await goto(`${AppRoute.PEOPLE}/${personToBeMergedIn.id}`, { replaceState: true });
+      await goto(`${resolveRoute(AppRouteId.PEOPLE)}/${personToBeMergedIn.id}`, { replaceState: true });
     } catch (error) {
       handleError(error, $t('errors.unable_to_save_name'));
     }

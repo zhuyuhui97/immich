@@ -1,7 +1,8 @@
 import { goto } from '$app/navigation';
+import { resolveRoute } from '$app/paths';
 import FormatBoldMessage from '$lib/components/i18n/format-bold-message.svelte';
 import { NotificationType, notificationController } from '$lib/components/shared-components/notification/notification';
-import { AppRoute } from '$lib/constants';
+import { AppRouteId } from '$lib/constants';
 import type { AssetInteractionStore } from '$lib/stores/asset-interaction.store';
 import { assetViewingStore } from '$lib/stores/asset-viewing.store';
 import { isSelectingAllAssets, type AssetStore } from '$lib/stores/assets.store';
@@ -57,7 +58,7 @@ export const addAssetsToAlbum = async (albumId: string, assetIds: string[], show
       button: {
         text: $t('view_album'),
         onClick() {
-          return goto(`${AppRoute.ALBUMS}/${albumId}`);
+          return goto(`${resolveRoute(AppRouteId.ALBUMS)}/${albumId}`);
         },
       },
     });
@@ -131,7 +132,7 @@ export const addAssetsToNewAlbum = async (albumName: string, assetIds: string[])
     button: {
       text: $t('view_album'),
       onClick() {
-        return goto(`${AppRoute.ALBUMS}/${album.id}`);
+        return goto(`${resolveRoute(AppRouteId.ALBUMS)}/${album.id}`);
       },
     },
   });

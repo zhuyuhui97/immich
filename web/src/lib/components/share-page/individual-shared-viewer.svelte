@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { AppRoute } from '$lib/constants';
+  import { resolveRoute } from '$app/paths';
+  import { AppRouteId } from '$lib/constants';
   import { dragAndDropFilesStore } from '$lib/stores/drag-and-drop-files.store';
   import { getKey, handlePromiseError } from '$lib/utils';
   import { downloadArchive } from '$lib/utils/asset-utils';
@@ -84,7 +85,7 @@
       {/if}
     </AssetSelectControlBar>
   {:else}
-    <ControlAppBar on:close={() => goto(AppRoute.PHOTOS)} backIcon={mdiArrowLeft} showBackButton={false}>
+    <ControlAppBar on:close={() => goto(resolveRoute(AppRouteId.PHOTOS))} backIcon={mdiArrowLeft} showBackButton={false}>
       <svelte:fragment slot="leading">
         <ImmichLogoSmallLink width={innerWidth} />
       </svelte:fragment>

@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import Badge from '$lib/components/elements/badge.svelte';
   import ShareCover from '$lib/components/sharedlinks-page/covers/share-cover.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { locale } from '$lib/stores/preferences.store';
   import { SharedLinkType, type SharedLinkResponseDto } from '@immich/sdk';
   import { DateTime, type ToRelativeUnit } from 'luxon';
@@ -38,7 +39,7 @@
 >
   <svelte:element
     this={isExpired ? 'div' : 'a'}
-    href={isExpired ? undefined : `${AppRoute.SHARE}/${link.key}`}
+    href={isExpired ? undefined : `${resolveRoute(AppRouteId.SHARE)}/${link.key}`}
     class="flex gap-4 w-full py-4"
   >
     <ShareCover class="transition-all duration-300 hover:shadow-lg" {link} />

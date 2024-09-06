@@ -1,7 +1,8 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import ImageThumbnail from '$lib/components/assets/thumbnail/image-thumbnail.svelte';
   import UserPageLayout from '$lib/components/layouts/user-page-layout.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { getAssetThumbnailUrl, getPeopleThumbnailUrl } from '$lib/utils';
   import { AssetMediaSize, type SearchExploreResponseDto } from '@immich/sdk';
   import type { PageData } from './$types';
@@ -48,14 +49,14 @@
       <div class="flex justify-between">
         <p class="mb-4 font-medium dark:text-immich-dark-fg">{$t('people')}</p>
         <a
-          href={AppRoute.PEOPLE}
+          href={resolveRoute(AppRouteId.PEOPLE)}
           class="pr-4 text-sm font-medium hover:text-immich-primary dark:text-immich-dark-fg dark:hover:text-immich-dark-primary"
           draggable="false">{$t('view_all')}</a
         >
       </div>
       <SingleGridRow class="grid md:grid-auto-fill-28 grid-auto-fill-20 gap-x-4" let:itemCount>
         {#each people.slice(0, itemCount) as person (person.id)}
-          <a href="{AppRoute.PEOPLE}/{person.id}" class="text-center">
+          <a href="{resolveRoute(AppRouteId.PEOPLE)}/{person.id}" class="text-center">
             <ImageThumbnail circle shadow url={getPeopleThumbnailUrl(person)} altText={person.name} widthStyle="100%" />
             <p class="mt-2 text-ellipsis text-sm font-medium dark:text-white">{person.name}</p>
           </a>
@@ -69,14 +70,14 @@
       <div class="flex justify-between">
         <p class="mb-4 font-medium dark:text-immich-dark-fg">{$t('places')}</p>
         <a
-          href={AppRoute.PLACES}
+          href={resolveRoute(AppRouteId.PLACES)}
           class="pr-4 text-sm font-medium hover:text-immich-primary dark:text-immich-dark-fg dark:hover:text-immich-dark-primary"
           draggable="false">{$t('view_all')}</a
         >
       </div>
       <SingleGridRow class="grid md:grid-auto-fill-36 grid-auto-fill-28 gap-x-4" let:itemCount>
         {#each places.slice(0, itemCount) as item (item.data.id)}
-          <a class="relative" href="{AppRoute.SEARCH}?{getMetadataSearchQuery({ city: item.value })}" draggable="false">
+          <a class="relative" href="{resolveRoute(AppRouteId.SEARCH)}?{getMetadataSearchQuery({ city: item.value })}" draggable="false">
             <div class="flex justify-center overflow-hidden rounded-xl brightness-75 filter">
               <img
                 src={getAssetThumbnailUrl({ id: item.data.id, size: AssetMediaSize.Thumbnail })}

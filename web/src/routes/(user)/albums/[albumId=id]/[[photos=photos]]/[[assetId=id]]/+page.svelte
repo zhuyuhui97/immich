@@ -1,5 +1,6 @@
 <script lang="ts">
   import { afterNavigate, goto, onNavigate } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import AlbumDescription from '$lib/components/album-page/album-description.svelte';
   import AlbumOptions from '$lib/components/album-page/album-options.svelte';
   import AlbumSummary from '$lib/components/album-page/album-summary.svelte';
@@ -32,7 +33,7 @@
     notificationController,
   } from '$lib/components/shared-components/notification/notification';
   import UserAvatar from '$lib/components/shared-components/user-avatar.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { numberOfComments, setNumberOfComments, updateNumberOfComments } from '$lib/stores/activity.store';
   import { createAssetInteractionStore } from '$lib/stores/asset-interaction.store';
   import { assetViewingStore } from '$lib/stores/asset-viewing.store';
@@ -114,7 +115,7 @@
     OPTIONS = 'options',
   }
 
-  let backUrl: string = AppRoute.ALBUMS;
+  let backUrl: string = resolveRoute(AppRouteId.ALBUMS);
   let viewMode = ViewMode.VIEW;
   let isCreatingSharedAlbum = false;
   let isShowActivity = false;
@@ -157,12 +158,12 @@
     }
 
     if (isAlbumsRoute(route) || isPeopleRoute(route)) {
-      url = AppRoute.ALBUMS;
+      url = resolveRoute(AppRouteId.ALBUMS);
     }
 
-    backUrl = url || AppRoute.ALBUMS;
+    backUrl = url || resolveRoute(AppRouteId.ALBUMS);
 
-    if (backUrl === AppRoute.SHARING && album.albumUsers.length === 0 && !album.hasSharedLink) {
+    if (backUrl === resolveRoute(AppRouteId.SHARING) && album.albumUsers.length === 0 && !album.hasSharedLink) {
       isCreatingSharedAlbum = true;
     }
   });

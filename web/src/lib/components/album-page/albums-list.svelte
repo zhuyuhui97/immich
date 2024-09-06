@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import { onMount } from 'svelte';
   import { groupBy } from 'lodash-es';
   import { addUsersToAlbum, deleteAlbum, type AlbumUserAddDto, type AlbumResponseDto, isHttpError } from '@immich/sdk';
@@ -36,7 +37,7 @@
     type AlbumViewSettings,
   } from '$lib/stores/preferences.store';
   import { goto } from '$app/navigation';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { t } from 'svelte-i18n';
 
   export let ownedAlbums: AlbumResponseDto[] = [];
@@ -285,7 +286,7 @@
       button: {
         text: $t('view_album'),
         onClick() {
-          return goto(`${AppRoute.ALBUMS}/${album.id}`);
+          return goto(`${resolveRoute(AppRouteId.ALBUMS)}/${album.id}`);
         },
       },
     });

@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import FullScreenModal from '$lib/components/shared-components/full-screen-modal.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { serverInfo } from '$lib/stores/server-info.store';
   import { handleError } from '$lib/utils/handle-error';
   import { updateUserAdmin, type UserAdminResponseDto } from '@immich/sdk';
@@ -131,7 +132,7 @@
 
       <p>
         {$t('admin.note_apply_storage_label_previous_assets')}
-        <a href={AppRoute.ADMIN_JOBS} class="text-immich-primary dark:text-immich-dark-primary">
+        <a href={resolveRoute(AppRouteId.ADMIN_JOBS)} class="text-immich-primary dark:text-immich-dark-primary">
           {$t('admin.storage_template_migration_job')}
         </a>
       </p>

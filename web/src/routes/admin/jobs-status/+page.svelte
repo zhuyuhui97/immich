@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import JobsPanel from '$lib/components/admin-page/jobs/jobs-panel.svelte';
   import LinkButton from '$lib/components/elements/buttons/link-button.svelte';
   import Icon from '$lib/components/elements/icon.svelte';
   import UserPageLayout from '$lib/components/layouts/user-page-layout.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { asyncTimeout } from '$lib/utils';
   import { getAllJobsStatus, type AllJobStatusResponseDto } from '@immich/sdk';
   import { mdiCog } from '@mdi/js';
@@ -31,7 +32,7 @@
 
 <UserPageLayout title={data.meta.title} admin>
   <div class="flex justify-end" slot="buttons">
-    <LinkButton href="{AppRoute.ADMIN_SETTINGS}?isOpen=job">
+    <LinkButton href="{resolveRoute(AppRouteId.ADMIN_SETTINGS)}?isOpen=job">
       <div class="flex place-items-center gap-2 text-sm">
         <Icon path={mdiCog} size="18" />
         {$t('admin.manage_concurrency')}

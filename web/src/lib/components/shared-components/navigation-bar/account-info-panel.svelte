@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import { focusTrap } from '$lib/actions/focus-trap';
   import Button from '$lib/components/elements/buttons/button.svelte';
   import CircleIconButton from '$lib/components/elements/buttons/circle-icon-button.svelte';
   import Icon from '$lib/components/elements/icon.svelte';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { preferences, user } from '$lib/stores/user.store';
   import { handleError } from '$lib/utils/handle-error';
   import { deleteProfileImage, updateMyPreferences, type UserAvatarColor } from '@immich/sdk';
@@ -74,7 +75,7 @@
     </div>
 
     <Button
-      href={AppRoute.USER_SETTINGS}
+      href={resolveRoute(AppRouteId.USER_SETTINGS)}
       on:click={() => dispatch('close')}
       color="dark-gray"
       size="sm"

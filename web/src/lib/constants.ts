@@ -11,7 +11,7 @@ export enum AssetAction {
   UNSTACK = 'unstack',
 }
 
-export enum AppRoute {
+export enum AppRouteId {
   ADMIN_USER_MANAGEMENT = '/admin/user-management',
   ADMIN_LIBRARY_MANAGEMENT = '/admin/library-management',
   ADMIN_SETTINGS = '/admin/system-settings',
@@ -19,35 +19,34 @@ export enum AppRoute {
   ADMIN_JOBS = '/admin/jobs-status',
   ADMIN_REPAIR = '/admin/repair',
 
-  ALBUMS = '/albums',
-  LIBRARIES = '/libraries',
-  ARCHIVE = '/archive',
-  FAVORITES = '/favorites',
-  PEOPLE = '/people',
-  PLACES = '/places',
-  PHOTOS = '/photos',
-  EXPLORE = '/explore',
-  SHARE = '/share',
-  SHARING = '/sharing',
-  SHARED_LINKS = '/sharing/sharedlinks',
-  SEARCH = '/search',
-  MAP = '/map',
-  USER_SETTINGS = '/user-settings',
-  MEMORY = '/memory',
-  TRASH = '/trash',
-  PARTNERS = '/partners',
-  BUY = '/buy',
+  ALBUMS = '/(user)/albums',
+  ARCHIVE = '/(user)/archive',
+  FAVORITES = '/(user)/favorites',
+  PEOPLE = '/(user)/people',
+  PLACES = '/(user)/places',
+  PHOTOS = '/(user)/photos',
+  EXPLORE = '/(user)/explore',
+  SHARE = '/(user)/share',
+  SHARING = '/(user)/sharing',
+  SHARED_LINKS = '/(user)/sharing/sharedlinks',
+  SEARCH = '/(user)/search',
+  MAP = '/(user)/map',
+  USER_SETTINGS = '/(user)/user-settings',
+  MEMORY = '/(user)/memory',
+  TRASH = '/(user)/trash',
+  PARTNERS = '/(user)/partners',
+  BUY = '/(user)/buy',
 
   AUTH_LOGIN = '/auth/login',
   AUTH_REGISTER = '/auth/register',
   AUTH_CHANGE_PASSWORD = '/auth/change-password',
   AUTH_ONBOARDING = '/auth/onboarding',
 
-  UTILITIES = '/utilities',
-  DUPLICATES = '/utilities/duplicates',
+  UTILITIES = '/(user)/utilities',
+  DUPLICATES = '/(user)/utilities/duplicates',
 
-  FOLDERS = '/folders',
-  TAGS = '/tags',
+  FOLDERS = '/(user)/folders',
+  TAGS = '/(user)/tags',
 }
 
 export enum ProjectionType {

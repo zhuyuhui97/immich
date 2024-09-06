@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import empty3Url from '$lib/assets/empty-3.svg';
   import LinkButton from '$lib/components/elements/buttons/link-button.svelte';
   import Icon from '$lib/components/elements/icon.svelte';
@@ -14,7 +15,7 @@
     NotificationType,
     notificationController,
   } from '$lib/components/shared-components/notification/notification';
-  import { AppRoute } from '$lib/constants';
+  import { AppRouteId } from '$lib/constants';
   import { createAssetInteractionStore } from '$lib/stores/asset-interaction.store';
   import { AssetStore } from '$lib/stores/assets.store';
   import { featureFlags, serverConfig } from '$lib/stores/server-config.store';
@@ -30,7 +31,7 @@
   export let data: PageData;
 
   if (!$featureFlags.trash) {
-    handlePromiseError(goto(AppRoute.PHOTOS));
+    handlePromiseError(goto(resolveRoute(AppRouteId.PHOTOS)));
   }
 
   const assetStore = new AssetStore({ isTrashed: true });

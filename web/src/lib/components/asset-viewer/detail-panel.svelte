@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { resolveRoute } from '$app/paths';
   import DetailPanelLocation from '$lib/components/asset-viewer/detail-panel-location.svelte';
   import Icon from '$lib/components/elements/icon.svelte';
   import ChangeDate from '$lib/components/shared-components/change-date.svelte';
-  import { AppRoute, QueryParameter, timeToLoadTheMap } from '$lib/constants';
+  import { AppRouteId, QueryParameter, timeToLoadTheMap } from '$lib/constants';
   import { boundingBoxesArray } from '$lib/stores/people.store';
   import { locale } from '$lib/stores/preferences.store';
   import { featureFlags } from '$lib/stores/server-config.store';
@@ -196,9 +197,9 @@
           {#if showingHiddenPeople || !person.isHidden}
             <a
               class="w-[90px]"
-              href="{AppRoute.PEOPLE}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={currentAlbum?.id
-                ? `${AppRoute.ALBUMS}/${currentAlbum?.id}`
-                : AppRoute.PHOTOS}"
+              href="{resolveRoute(AppRouteId.PEOPLE)}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={currentAlbum?.id
+                ? `${resolveRoute(AppRouteId.ALBUMS)}/${currentAlbum?.id}`
+                : resolveRoute(AppRouteId.PHOTOS)}"
               on:focus={() => ($boundingBoxesArray = people[index].faces)}
               on:blur={() => ($boundingBoxesArray = [])}
               on:mouseover={() => ($boundingBoxesArray = people[index].faces)}
@@ -435,7 +436,7 @@
         zoom={12.5}
         simplified
         useLocationPin
-        onOpenInMapView={() => goto(`${AppRoute.MAP}#12.5/${latlng.lat}/${latlng.lng}`)}
+        onOpenInMapView={() => goto(`${resolveRoute(AppRouteId.MAP)}#12.5/${latlng.lat}/${latlng.lng}`)}
       >
         <svelte:fragment slot="popup" let:marker>
           {@const { lat, lon } = marker}
@@ -476,7 +477,7 @@
   <section class="px-6 pt-6 dark:text-immich-dark-fg">
     <p class="pb-4 text-sm">{$t('appears_in').toUpperCase()}</p>
     {#each albums as album}
-      <a href="{AppRoute.ALBUMS}/{album.id}">
+      <a href="{resolveRoute(AppRouteId.ALBUMS)}/{album.id}">
         <div class="flex gap-4 pt-2 hover:cursor-pointer items-center">
           <div>
             <img

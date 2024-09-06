@@ -6,7 +6,7 @@
   import SideBarSection from '$lib/components/shared-components/side-bar/side-bar-section.svelte';
   import TreeItemThumbnails from '$lib/components/shared-components/tree/tree-item-thumbnails.svelte';
   import TreeItems from '$lib/components/shared-components/tree/tree-items.svelte';
-  import { AppRoute, QueryParameter } from '$lib/constants';
+  import { AppRouteId, QueryParameter } from '$lib/constants';
   import type { Viewport } from '$lib/stores/assets.store';
   import { foldersStore } from '$lib/stores/folders.store';
   import { buildTree, normalizeTreePath } from '$lib/utils/tree-utils';
@@ -37,7 +37,7 @@
   };
 
   const getLink = (path: string) => {
-    const url = new URL(AppRoute.FOLDERS, window.location.href);
+    const url = new URL(resolveRoute(AppRouteId.FOLDERS), window.location.href);
     if (path) {
       url.searchParams.set(QueryParameter.PATH, path);
     }
