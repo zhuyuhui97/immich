@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { resolveRoute } from '$app/paths';
   import OnboardingHello from '$lib/components/onboarding-page/onboarding-hello.svelte';
   import OnboardingPrivacy from '$lib/components/onboarding-page/onboarding-privacy.svelte';
   import OnboadingStorageTemplate from '$lib/components/onboarding-page/onboarding-storage-template.svelte';

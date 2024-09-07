@@ -1,5 +1,6 @@
 <script lang="ts">
   import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import { shortcuts, type ShortcutOptions } from '$lib/actions/shortcut';
   import type { Action } from '$lib/components/asset-viewer/actions/action';
   import { AppRouteId, AssetAction } from '$lib/constants';
