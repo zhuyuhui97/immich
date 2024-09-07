@@ -20,6 +20,9 @@ const config = {
       '$lib/*': 'src/lib/*',
       '@test-data': 'src/test-data',
     },
+    paths: {
+      base: '/immich',
+    },
   },
 };
 
