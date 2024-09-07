@@ -11,14 +11,15 @@ process.env.PUBLIC_IMMICH_PAY_HOST = process.env.PUBLIC_IMMICH_PAY_HOST || 'http
 const config = {
   preprocess: vitePreprocess(),
   kit: {
-    adapter: adapter({
-      fallback: 'index.html',
-      precompress: true,
-    }),
+    adapter: adapter(),
     alias: {
       $lib: 'src/lib',
       '$lib/*': 'src/lib/*',
       '@test-data': 'src/test-data',
+    },
+    paths: {
+      base:'',
+      relative: true,
     },
   },
 };

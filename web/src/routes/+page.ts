@@ -11,7 +11,7 @@ import type { PageLoad } from './$types';
 
 import * as immich_sdk from '@immich/sdk';
 
-export const ssr = false;
+export const ssr = true;
 export const csr = true;
 
 export const load = (async ({ fetch }) => {
