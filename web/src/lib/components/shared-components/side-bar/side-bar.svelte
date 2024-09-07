@@ -55,7 +55,7 @@
     </SideBarLink>
 
     {#if $featureFlags.search}
-      <SideBarLink title={$t('explore')} routeId={AppRouteId.SEARCH} icon={mdiMagnify} />
+      <SideBarLink title={$t('explore')} routeId={AppRouteId.EXPLORE} icon={mdiMagnify} />
     {/if}
 
     {#if $featureFlags.map}
