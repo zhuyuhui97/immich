@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import dotenv from 'dotenv';
 
@@ -20,6 +20,9 @@ const config = {
     paths: {
       base:'',
       relative: true,
+    },
+    env: {
+      privatePrefix: "IMMICH_",
     },
   },
 };
