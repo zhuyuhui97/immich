@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { resolveRoute } from '$app/paths';
   import Button from '$lib/components/elements/buttons/button.svelte';
   import LinkButton from '$lib/components/elements/buttons/link-button.svelte';
   import Icon from '$lib/components/elements/icon.svelte';

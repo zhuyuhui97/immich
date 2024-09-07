@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { resolveRoute } from '$app/paths';
   import Icon from '$lib/components/elements/icon.svelte';
   import { ActionQueryParameterValue, AppRouteId, QueryParameter } from '$lib/constants';
   import { handleError } from '$lib/utils/handle-error';

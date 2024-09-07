@@ -1,6 +1,7 @@
 <script lang="ts">
   import { afterNavigate, goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { resolveRoute } from '$app/paths';
   import ImageThumbnail from '$lib/components/assets/thumbnail/image-thumbnail.svelte';
   import EditNameInput from '$lib/components/faces-page/edit-name-input.svelte';
   import MergeFaceSelector from '$lib/components/faces-page/merge-face-selector.svelte';

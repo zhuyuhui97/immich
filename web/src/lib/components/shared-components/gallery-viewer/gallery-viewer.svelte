@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolveRoute } from '$app/paths';
   import type { Action } from '$lib/components/asset-viewer/actions/action';
   import Thumbnail from '$lib/components/assets/thumbnail/thumbnail.svelte';
   import { AppRouteId, AssetAction } from '$lib/constants';
