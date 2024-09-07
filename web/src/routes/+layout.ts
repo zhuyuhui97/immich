@@ -1,8 +1,7 @@
 import { init } from '$lib/utils/server';
 import type { LayoutLoad } from './$types';
 
-export const prerender = true;
-export const ssr = true;
+export const ssr = false;
 export const csr = true;
 
 export const load = (async ({ fetch }) => {
