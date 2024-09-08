@@ -1,8 +1,10 @@
 import { browser } from '$app/environment';
 import { resolveRoute } from '$app/paths';
+import { goto } from '$app/navigation';
+import { foldersStore } from '$lib/stores/folders.store';
 import { purchaseStore } from '$lib/stores/purchase.store';
 import { serverInfo } from '$lib/stores/server-info.store';
-import { preferences as preferences$, user as user$ } from '$lib/stores/user.store';
+import { preferences as preferences$, resetSavedUser, user as user$ } from '$lib/stores/user.store';
 import { getAboutInfo, getMyPreferences, getMyUser, getStorage } from '@immich/sdk';
 import { redirect } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
@@ -87,4 +89,17 @@ export const getAccountAge = (): number => {
   const accountAge = now.diff(createdDate, 'days').days.toFixed(0);
 
   return Number(accountAge);
+};
+
+export const handleLogout = async (redirectUri: string) => {
+  try {
+    if (redirectUri.startsWith('/')) {
+      await goto(redirectUri);
+    } else {
+      window.location.href = redirectUri;
+    }
+  } finally {
+    resetSavedUser();
+    foldersStore.clearCache();
+  }
 };
