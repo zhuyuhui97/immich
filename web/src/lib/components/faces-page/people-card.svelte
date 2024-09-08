@@ -43,7 +43,10 @@
   use:focusOutside={{ onFocusOut: () => (showVerticalDots = false) }}
 >
   <a
-    href="{resolveRoute(AppRouteId.PEOPLE)}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={resolveRoute(AppRouteId.PEOPLE)}"
+    href="{resolveRoute(AppRouteId.PEOPLE, {})}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={resolveRoute(
+      AppRouteId.PEOPLE,
+      {},
+    )}"
     draggable="false"
     on:focus={() => (showVerticalDots = true)}
   >

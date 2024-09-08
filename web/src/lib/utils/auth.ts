@@ -1,8 +1,10 @@
 import { browser } from '$app/environment';
+import { goto } from '$app/navigation';
 import { resolveRoute } from '$app/paths';
+import { foldersStore } from '$lib/stores/folders.store';
 import { purchaseStore } from '$lib/stores/purchase.store';
 import { serverInfo } from '$lib/stores/server-info.store';
-import { preferences as preferences$, user as user$ } from '$lib/stores/user.store';
+import { preferences as preferences$, resetSavedUser, user as user$ } from '$lib/stores/user.store';
 import { getAboutInfo, getMyPreferences, getMyUser, getStorage } from '@immich/sdk';
 import { redirect } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
@@ -60,11 +62,11 @@ export const authenticate = async (options?: AuthOptions) => {
   }
 
   if (!user) {
-    redirect(302, resolveRoute(AppRouteId.AUTH_LOGIN));
+    redirect(302, resolveRoute(AppRouteId.AUTH_LOGIN, {}));
   }
 
   if (adminRoute && !user.isAdmin) {
-    redirect(302, resolveRoute(AppRouteId.PHOTOS));
+    redirect(302, resolveRoute(AppRouteId.PHOTOS, {}));
   }
 };
 
@@ -87,4 +89,17 @@ export const getAccountAge = (): number => {
   const accountAge = now.diff(createdDate, 'days').days.toFixed(0);
 
   return Number(accountAge);
+};
+
+export const handleLogout = async (redirectUri: string) => {
+  try {
+    if (redirectUri.startsWith('/')) {
+      await goto(redirectUri);
+    } else {
+      window.location.href = redirectUri;
+    }
+  } finally {
+    resetSavedUser();
+    foldersStore.clearCache();
+  }
 };

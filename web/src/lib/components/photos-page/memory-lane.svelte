@@ -1,5 +1,5 @@
 <script lang="ts">
-import { resolveRoute } from '$app/paths';
+  import { resolveRoute } from '$app/paths';
   import { resizeObserver } from '$lib/actions/resize-observer';
   import Icon from '$lib/components/elements/icon.svelte';
   import { AppRouteId, QueryParameter } from '$lib/constants';
@@ -74,7 +74,7 @@ import { resolveRoute } from '$app/paths';
         {#if memory.assets.length > 0}
           <a
             class="memory-card relative mr-8 inline-block aspect-video h-[215px] rounded-xl"
-            href="{resolveRoute(AppRouteId.MEMORY)}?{QueryParameter.MEMORY_INDEX}={index}"
+            href="{resolveRoute(AppRouteId.MEMORY, {})}?{QueryParameter.MEMORY_INDEX}={index}"
           >
             <img
               class="h-full w-full rounded-xl object-cover"

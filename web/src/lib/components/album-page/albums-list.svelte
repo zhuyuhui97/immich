@@ -286,7 +286,7 @@
       button: {
         text: $t('view_album'),
         onClick() {
-          return goto(`${resolveRoute(AppRouteId.ALBUMS)}/${album.id}`);
+          return goto(`${resolveRoute(AppRouteId.ALBUMS, {})}/${album.id}`);
         },
       },
     });

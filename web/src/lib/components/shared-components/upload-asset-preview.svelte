@@ -57,7 +57,7 @@
     {#if uploadAsset.state === UploadState.DUPLICATED && uploadAsset.assetId}
       <div class="flex items-center justify-between gap-1">
         <a
-          href="{resolveRoute(AppRouteId.PHOTOS)}/{uploadAsset.assetId}"
+          href="{resolveRoute(AppRouteId.PHOTOS, {})}/{uploadAsset.assetId}"
           target="_blank"
           rel="noopener noreferrer"
           class=""

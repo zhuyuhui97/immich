@@ -1,6 +1,6 @@
 import { base } from '$app/paths';
-import { isHttpError, type ApiHttpError } from '@immich/sdk';
 import * as immich_sdk from '@immich/sdk';
+import { isHttpError, type ApiHttpError } from '@immich/sdk';
 import type { HandleClientError } from '@sveltejs/kit';
 
 immich_sdk.setBaseUrl(base + immich_sdk.getBaseUrl());

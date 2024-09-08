@@ -40,7 +40,7 @@
     closeDropdown();
     showFilter = false;
     $isSearchEnabled = false;
-    await goto(`${resolveRoute(AppRouteId.SEARCH)}?${params}`);
+    await goto(`${resolveRoute(AppRouteId.SEARCH, {})}?${params}`);
   };
 
   const clearSearchTerm = (searchTerm: string) => {
@@ -147,7 +147,7 @@
     draggable="false"
     autocomplete="off"
     class="select-text text-sm"
-    action={resolveRoute(AppRouteId.SEARCH)}
+    action={resolveRoute(AppRouteId.SEARCH, {})}
     on:reset={() => (value = '')}
     on:submit|preventDefault={onSubmit}
     on:focusin={onFocusIn}

@@ -90,7 +90,7 @@
 
   let viewMode: ViewMode = ViewMode.VIEW_ASSETS;
   let isEditingName = false;
-  let previousRoute: string = resolveRoute(AppRouteId.EXPLORE);
+  let previousRoute: string = resolveRoute(AppRouteId.EXPLORE, {});
   let people: PersonResponseDto[] = [];
   let personMerge1: PersonResponseDto;
   let personMerge2: PersonResponseDto;
@@ -232,7 +232,7 @@
         refreshAssetGrid = !refreshAssetGrid;
         return;
       }
-      await goto(`${resolveRoute(AppRouteId.PEOPLE)}/${personToBeMergedIn.id}`, { replaceState: true });
+      await goto(`${resolveRoute(AppRouteId.PEOPLE, {})}/${personToBeMergedIn.id}`, { replaceState: true });
     } catch (error) {
       handleError(error, $t('errors.unable_to_save_name'));
     }

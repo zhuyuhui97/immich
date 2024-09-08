@@ -175,7 +175,7 @@
 
     {#if sharedLinks.length}
       <a
-        href={resolveRoute(AppRouteId.SHARED_LINKS)}
+        href={resolveRoute(AppRouteId.SHARED_LINKS, {})}
         class="flex flex-col place-content-center place-items-center gap-2 hover:cursor-pointer"
       >
         <Icon path={mdiShareCircle} size={24} />

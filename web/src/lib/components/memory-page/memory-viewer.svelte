@@ -158,7 +158,7 @@
     { shortcut: { key: 'd' }, onShortcut: () => canGoForward && toNext() },
     { shortcut: { key: 'ArrowLeft' }, onShortcut: () => canGoBack && toPrevious() },
     { shortcut: { key: 'a' }, onShortcut: () => canGoBack && toPrevious() },
-    { shortcut: { key: 'Escape' }, onShortcut: () => goto(resolveRoute(AppRouteId.PHOTOS)) },
+    { shortcut: { key: 'Escape' }, onShortcut: () => goto(resolveRoute(AppRouteId.PHOTOS, {})) },
   ]}
 />
 
@@ -188,7 +188,7 @@
 
 <section id="memory-viewer" class="w-full bg-immich-dark-gray" bind:this={memoryWrapper}>
   {#if currentMemory}
-    <ControlAppBar on:close={() => goto(resolveRoute(AppRouteId.PHOTOS))} forceDark>
+    <ControlAppBar on:close={() => goto(resolveRoute(AppRouteId.PHOTOS, {}))} forceDark>
       <svelte:fragment slot="leading">
         <p class="text-lg">
           {$memoryLaneTitle(currentMemory.yearsAgo)}
@@ -310,7 +310,7 @@
               class:opacity-100={!galleryInView}
             >
               <CircleIconButton
-                href="{resolveRoute(AppRouteId.PHOTOS)}?at={currentAsset.id}"
+                href="{resolveRoute(AppRouteId.PHOTOS, {})}?at={currentAsset.id}"
                 icon={mdiImageSearch}
                 title={$t('view_in_timeline')}
                 color="light"

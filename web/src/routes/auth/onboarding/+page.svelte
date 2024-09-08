@@ -38,17 +38,21 @@
     if (index >= onboardingSteps.length - 1) {
       await updateAdminOnboarding({ adminOnboardingUpdateDto: { isOnboarded: true } });
       await retrieveServerConfig();
-      await goto(resolveRoute(AppRouteId.PHOTOS));
+      await goto(resolveRoute(AppRouteId.PHOTOS, {}));
     } else {
       index++;
-      await goto(`${resolveRoute(AppRouteId.AUTH_ONBOARDING)}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
+      await goto(
+        `${resolveRoute(AppRouteId.AUTH_ONBOARDING, {})}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`,
+      );
     }
   };
 
   const handlePrevious = async () => {
     if (index >= 1) {
       index--;
-      await goto(`${resolveRoute(AppRouteId.AUTH_ONBOARDING)}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
+      await goto(
+        `${resolveRoute(AppRouteId.AUTH_ONBOARDING, {})}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`,
+      );
     }
   };
 </script>

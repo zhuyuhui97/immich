@@ -58,7 +58,7 @@ export const addAssetsToAlbum = async (albumId: string, assetIds: string[], show
       button: {
         text: $t('view_album'),
         onClick() {
-          return goto(`${resolveRoute(AppRouteId.ALBUMS)}/${albumId}`);
+          return goto(`${resolveRoute(AppRouteId.ALBUMS, {})}/${albumId}`);
         },
       },
     });
@@ -132,7 +132,7 @@ export const addAssetsToNewAlbum = async (albumName: string, assetIds: string[])
     button: {
       text: $t('view_album'),
       onClick() {
-        return goto(`${resolveRoute(AppRouteId.ALBUMS)}/${album.id}`);
+        return goto(`${resolveRoute(AppRouteId.ALBUMS, {})}/${album.id}`);
       },
     },
   });

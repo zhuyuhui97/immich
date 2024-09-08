@@ -195,7 +195,7 @@
 
   const handleMergePeople = async (detail: PersonResponseDto) => {
     await goto(
-      `${resolveRoute(AppRouteId.PEOPLE)}/${detail.id}?${QueryParameter.ACTION}=${ActionQueryParameterValue.MERGE}&${QueryParameter.PREVIOUS_ROUTE}=${resolveRoute(AppRouteId.PEOPLE)}`,
+      `${resolveRoute(AppRouteId.PEOPLE, {})}/${detail.id}?${QueryParameter.ACTION}=${ActionQueryParameterValue.MERGE}&${QueryParameter.PREVIOUS_ROUTE}=${resolveRoute(AppRouteId.PEOPLE, {})}`,
     );
   };
 

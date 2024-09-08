@@ -10,7 +10,7 @@
   <p class="text-xs font-medium p-4">{$t('organize_your_library').toUpperCase()}</p>
 
   <a
-    href={resolveRoute(AppRouteId.DUPLICATES)}
+    href={resolveRoute(AppRouteId.DUPLICATES, {})}
     class="w-full hover:bg-gray-100 dark:hover:bg-immich-dark-gray flex items-center gap-4 p-4"
   >
     <span

@@ -115,7 +115,7 @@
     OPTIONS = 'options',
   }
 
-  let backUrl: string = resolveRoute(AppRouteId.ALBUMS);
+  let backUrl: string = resolveRoute(AppRouteId.ALBUMS, {});
   let viewMode = ViewMode.VIEW;
   let isCreatingSharedAlbum = false;
   let isShowActivity = false;
@@ -158,12 +158,12 @@
     }
 
     if (isAlbumsRoute(route) || isPeopleRoute(route)) {
-      url = resolveRoute(AppRouteId.ALBUMS);
+      url = resolveRoute(AppRouteId.ALBUMS, {});
     }
 
-    backUrl = url || resolveRoute(AppRouteId.ALBUMS);
+    backUrl = url || resolveRoute(AppRouteId.ALBUMS, {});
 
-    if (backUrl === resolveRoute(AppRouteId.SHARING) && album.albumUsers.length === 0 && !album.hasSharedLink) {
+    if (backUrl === resolveRoute(AppRouteId.SHARING, {}) && album.albumUsers.length === 0 && !album.hasSharedLink) {
       isCreatingSharedAlbum = true;
     }
   });
