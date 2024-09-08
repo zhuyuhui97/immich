@@ -43,7 +43,7 @@
   <div
     class="grid h-full grid-cols-[theme(spacing.18)_auto] items-center border-b bg-immich-bg py-2 dark:border-b-immich-dark-gray dark:bg-immich-dark-bg md:grid-cols-[theme(spacing.64)_auto]"
   >
-    <a data-sveltekit-preload-data="hover" class="ml-4" href={resolveRoute(AppRouteId.PHOTOS)}>
+    <a data-sveltekit-preload-data="hover" class="ml-4" href={resolveRoute(AppRouteId.PHOTOS, {})}>
       <ImmichLogo width="55%" noText={innerWidth < 768} />
     </a>
     <div class="flex justify-between gap-16 pr-6">
@@ -56,7 +56,7 @@
       <section class="flex place-items-center justify-end gap-4 max-sm:w-full">
         {#if $featureFlags.search}
           <CircleIconButton
-            href={resolveRoute(AppRouteId.SEARCH)}
+            href={resolveRoute(AppRouteId.SEARCH, {})}
             id="search-button"
             class="ml-4 sm:hidden"
             title={$t('go_to_search')}
@@ -80,7 +80,7 @@
         {#if $user.isAdmin}
           <a
             data-sveltekit-preload-data="hover"
-            href={resolveRoute(AppRouteId.ADMIN_USER_MANAGEMENT)}
+            href={resolveRoute(AppRouteId.ADMIN_USER_MANAGEMENT, {})}
             aria-label={$t('administration')}
             aria-current={$page.url.pathname.includes('/admin') ? 'page' : null}
           >

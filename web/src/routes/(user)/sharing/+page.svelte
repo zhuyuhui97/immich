@@ -43,7 +43,7 @@
       </div>
     </LinkButton>
 
-    <LinkButton href={resolveRoute(AppRouteId.SHARED_LINKS)}>
+    <LinkButton href={resolveRoute(AppRouteId.SHARED_LINKS, {})}>
       <div class="flex flex-wrap place-items-center justify-center gap-x-1 text-sm">
         <Icon path={mdiLink} size="18" class="shrink-0" />
         <span class="leading-none max-sm:text-xs">{$t('shared_links')}</span>
@@ -61,7 +61,7 @@
         <div class="flex flex-row flex-wrap gap-4">
           {#each data.partners as partner (partner.id)}
             <a
-              href="{resolveRoute(AppRouteId.PARTNERS)}/{partner.id}"
+              href="{resolveRoute(AppRouteId.PARTNERS, {})}/{partner.id}"
               class="flex gap-4 rounded-lg px-5 py-4 transition-all hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               <UserAvatar user={partner} size="lg" />

@@ -474,7 +474,7 @@
     const shortcuts: ShortcutOptions[] = [
       { shortcut: { key: 'Escape' }, onShortcut: () => dispatch('escape') },
       { shortcut: { key: '?', shift: true }, onShortcut: () => (showShortcuts = !showShortcuts) },
-      { shortcut: { key: '/' }, onShortcut: () => goto(resolveRoute(AppRouteId.EXPLORE)) },
+      { shortcut: { key: '/' }, onShortcut: () => goto(resolveRoute(AppRouteId.EXPLORE, {})) },
       { shortcut: { key: 'A', ctrl: true }, onShortcut: () => selectAllAssets($assetStore, assetInteractionStore) },
       { shortcut: { key: 'PageDown' }, preventDefault: false, onShortcut: focusElement },
       { shortcut: { key: 'PageUp' }, preventDefault: false, onShortcut: focusElement },

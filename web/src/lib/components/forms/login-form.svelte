@@ -44,7 +44,7 @@
 
     try {
       if ($featureFlags.oauthAutoLaunch && !oauth.isAutoLaunchDisabled(window.location)) {
-        await goto(`${resolveRoute(AppRouteId.AUTH_LOGIN)}?autoLaunch=0`, { replaceState: true });
+        await goto(`${resolveRoute(AppRouteId.AUTH_LOGIN, {})}?autoLaunch=0`, { replaceState: true });
         await oauth.authorize(window.location);
         return;
       }

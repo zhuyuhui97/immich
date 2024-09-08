@@ -15,17 +15,17 @@ export const load = (({ url }) => {
   const target = queryParams.get('target') as LinkTarget;
   switch (target) {
     case LinkTarget.HOME: {
-      return redirect(302, resolveRoute(AppRouteId.PHOTOS));
+      return redirect(302, resolveRoute(AppRouteId.PHOTOS, {}));
     }
 
     case LinkTarget.UNSUBSCRIBE: {
-      return redirect(302, `${resolveRoute(AppRouteId.USER_SETTINGS)}?isOpen=notifications`);
+      return redirect(302, `${resolveRoute(AppRouteId.USER_SETTINGS, {})}?isOpen=notifications`);
     }
 
     case LinkTarget.VIEW_ASSET: {
       const id = queryParams.get('id');
       if (id) {
-        return redirect(302, `${resolveRoute(AppRouteId.PHOTOS)}/${id}`);
+        return redirect(302, `${resolveRoute(AppRouteId.PHOTOS, {})}/${id}`);
       }
       break;
     }
@@ -34,7 +34,7 @@ export const load = (({ url }) => {
       // https://my.immich.app/link?target=activate_license&licenseKey=IMCL-9XC3-T4S3-37BU-GGJ5-8MWP-F2Y1-BGEX-AQTF
       const licenseKey = queryParams.get('licenseKey');
       const activationKey = queryParams.get('activationKey');
-      const redirectUrl = new URL(resolveRoute(AppRouteId.BUY), url.origin);
+      const redirectUrl = new URL(resolveRoute(AppRouteId.BUY, {}), url.origin);
 
       if (licenseKey) {
         redirectUrl.searchParams.append('licenseKey', licenseKey);
@@ -50,5 +50,5 @@ export const load = (({ url }) => {
     }
   }
 
-  return redirect(302, resolveRoute(AppRouteId.PHOTOS));
+  return redirect(302, resolveRoute(AppRouteId.PHOTOS, {}));
 }) satisfies PageLoad;

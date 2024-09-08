@@ -12,7 +12,7 @@
   export let data: PageData;
 
   const onSuccess = async () => {
-    await goto(resolveRoute(AppRouteId.AUTH_LOGIN));
+    await goto(resolveRoute(AppRouteId.AUTH_LOGIN, {}));
     resetSavedUser();
     await logout();
   };

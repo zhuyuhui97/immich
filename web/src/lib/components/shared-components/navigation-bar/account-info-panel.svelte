@@ -75,7 +75,7 @@
     </div>
 
     <Button
-      href={resolveRoute(AppRouteId.USER_SETTINGS)}
+      href={resolveRoute(AppRouteId.USER_SETTINGS, {})}
       on:click={() => dispatch('close')}
       color="dark-gray"
       size="sm"

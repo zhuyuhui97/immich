@@ -41,7 +41,7 @@ export const createAlbum = async (name?: string, assetIds?: string[]) => {
 export const createAlbumAndRedirect = async (name?: string, assetIds?: string[]) => {
   const newAlbum = await createAlbum(name, assetIds);
   if (newAlbum) {
-    await goto(`${resolveRoute(AppRouteId.ALBUMS)}/${newAlbum.id}`);
+    await goto(`${resolveRoute(AppRouteId.ALBUMS, {})}/${newAlbum.id}`);
   }
 };
 

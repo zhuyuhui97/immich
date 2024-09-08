@@ -197,9 +197,9 @@
           {#if showingHiddenPeople || !person.isHidden}
             <a
               class="w-[90px]"
-              href="{resolveRoute(AppRouteId.PEOPLE)}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={currentAlbum?.id
-                ? `${resolveRoute(AppRouteId.ALBUMS)}/${currentAlbum?.id}`
-                : resolveRoute(AppRouteId.PHOTOS)}"
+              href="{resolveRoute(AppRouteId.PEOPLE, {})}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={currentAlbum?.id
+                ? `${resolveRoute(AppRouteId.ALBUMS, {})}/${currentAlbum?.id}`
+                : resolveRoute(AppRouteId.PHOTOS, {})}"
               on:focus={() => ($boundingBoxesArray = people[index].faces)}
               on:blur={() => ($boundingBoxesArray = [])}
               on:mouseover={() => ($boundingBoxesArray = people[index].faces)}
@@ -436,7 +436,7 @@
         zoom={12.5}
         simplified
         useLocationPin
-        onOpenInMapView={() => goto(`${resolveRoute(AppRouteId.MAP)}#12.5/${latlng.lat}/${latlng.lng}`)}
+        onOpenInMapView={() => goto(`${resolveRoute(AppRouteId.MAP, {})}#12.5/${latlng.lat}/${latlng.lng}`)}
       >
         <svelte:fragment slot="popup" let:marker>
           {@const { lat, lon } = marker}
@@ -477,7 +477,7 @@
   <section class="px-6 pt-6 dark:text-immich-dark-fg">
     <p class="pb-4 text-sm">{$t('appears_in').toUpperCase()}</p>
     {#each albums as album}
-      <a href="{resolveRoute(AppRouteId.ALBUMS)}/{album.id}">
+      <a href="{resolveRoute(AppRouteId.ALBUMS, {})}/{album.id}">
         <div class="flex gap-4 pt-2 hover:cursor-pointer items-center">
           <div>
             <img

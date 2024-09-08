@@ -39,7 +39,7 @@
 >
   <svelte:element
     this={isExpired ? 'div' : 'a'}
-    href={isExpired ? undefined : `${resolveRoute(AppRouteId.SHARE)}/${link.key}`}
+    href={isExpired ? undefined : `${resolveRoute(AppRouteId.SHARE, {})}/${link.key}`}
     class="flex gap-4 w-full py-4"
   >
     <ShareCover class="transition-all duration-300 hover:shadow-lg" {link} />

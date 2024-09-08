@@ -32,7 +32,7 @@
 
 <UserPageLayout title={data.meta.title} admin>
   <div class="flex justify-end" slot="buttons">
-    <LinkButton href="{resolveRoute(AppRouteId.ADMIN_SETTINGS)}?isOpen=job">
+    <LinkButton href="{resolveRoute(AppRouteId.ADMIN_SETTINGS, {})}?isOpen=job">
       <div class="flex place-items-center gap-2 text-sm">
         <Icon path={mdiCog} size="18" />
         {$t('admin.manage_concurrency')}

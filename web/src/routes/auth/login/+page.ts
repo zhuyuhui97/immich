@@ -13,7 +13,7 @@ export const load = (async ({ parent }) => {
 
   if (!isInitialized) {
     // Admin not registered
-    redirect(302, resolveRoute(AppRouteId.AUTH_REGISTER));
+    redirect(302, resolveRoute(AppRouteId.AUTH_REGISTER, {}));
   }
 
   const $t = await getFormatter();

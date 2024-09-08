@@ -45,7 +45,7 @@
   const handleSwapPeople = async () => {
     [person, selectedPeople[0]] = [selectedPeople[0], person];
     $page.url.searchParams.set(QueryParameter.ACTION, ActionQueryParameterValue.MERGE);
-    await goto(`${resolveRoute(AppRouteId.PEOPLE)}/${person.id}?${$page.url.searchParams.toString()}`);
+    await goto(`${resolveRoute(AppRouteId.PEOPLE, {})}/${person.id}?${$page.url.searchParams.toString()}`);
   };
 
   const onSelect = (selected: PersonResponseDto) => {

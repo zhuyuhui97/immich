@@ -82,7 +82,7 @@
         );
         assets = assets;
         if (assets.length === 0) {
-          await goto(resolveRoute(AppRouteId.PHOTOS));
+          await goto(resolveRoute(AppRouteId.PHOTOS, {}));
         } else if (currentViewAssetIndex === assets.length) {
           await handlePrevious();
         } else {

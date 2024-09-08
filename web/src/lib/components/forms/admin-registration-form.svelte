@@ -34,7 +34,7 @@
       try {
         await signUpAdmin({ signUpDto: { email, password, name } });
         await retrieveServerConfig();
-        await goto(resolveRoute(AppRouteId.AUTH_LOGIN));
+        await goto(resolveRoute(AppRouteId.AUTH_LOGIN, {}));
       } catch (error) {
         handleError(error, $t('errors.unable_to_create_admin_account'));
         errorMessage = $t('errors.unable_to_create_admin_account');

@@ -38,7 +38,7 @@
   });
 
   $: if (!$featureFlags.map) {
-    handlePromiseError(goto(resolveRoute(AppRouteId.PHOTOS)));
+    handlePromiseError(goto(resolveRoute(AppRouteId.PHOTOS, {})));
   }
   const omit = (obj: MapSettings, key: string) => {
     return Object.fromEntries(Object.entries(obj).filter(([k]) => k !== key));

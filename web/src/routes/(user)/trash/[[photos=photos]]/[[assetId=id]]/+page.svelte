@@ -31,7 +31,7 @@
   export let data: PageData;
 
   if (!$featureFlags.trash) {
-    handlePromiseError(goto(resolveRoute(AppRouteId.PHOTOS)));
+    handlePromiseError(goto(resolveRoute(AppRouteId.PHOTOS, {})));
   }
 
   const assetStore = new AssetStore({ isTrashed: true });

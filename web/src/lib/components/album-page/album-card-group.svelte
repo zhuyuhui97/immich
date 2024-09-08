@@ -55,7 +55,7 @@
       {#each albums as album, index (album.id)}
         <a
           data-sveltekit-preload-data="hover"
-          href="{resolveRoute(AppRouteId.ALBUMS)}/{album.id}"
+          href="{resolveRoute(AppRouteId.ALBUMS, {})}/{album.id}"
           animate:flip={{ duration: 400 }}
           on:contextmenu|preventDefault={(e) => showContextMenu({ x: e.x, y: e.y }, album)}
         >

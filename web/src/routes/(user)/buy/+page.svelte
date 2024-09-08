@@ -35,7 +35,7 @@
       {/if}
 
       {#if showLicenseActivated || data.isActivated === true}
-        <LicenseActivationSuccess onDone={() => goto(resolveRoute(AppRouteId.PHOTOS), { replaceState: false })} />
+        <LicenseActivationSuccess onDone={() => goto(resolveRoute(AppRouteId.PHOTOS, {}), { replaceState: false })} />
       {:else}
         <LicenseContent
           onActivate={() => {

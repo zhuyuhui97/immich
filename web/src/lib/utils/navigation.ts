@@ -31,7 +31,7 @@ function currentUrlWithoutAsset() {
   // This contains special casing for the /photos/:assetId route, which hangs directly
   // off / instead of a subpath, unlike every other asset-containing route.
   return isPhotosRoute($page.route.id)
-    ? resolveRoute(AppRouteId.PHOTOS) + $page.url.search
+    ? resolveRoute(AppRouteId.PHOTOS, {}) + $page.url.search
     : $page.url.pathname.replace(/(\/photos.*)$/, '') + $page.url.search;
 }
 
@@ -44,7 +44,7 @@ export function currentUrlReplaceAssetId(assetId: string) {
   // this contains special casing for the /photos/:assetId photos route, which hangs directly
   // off / instead of a subpath, unlike every other asset-containing route.
   return isPhotosRoute($page.route.id)
-    ? `${resolveRoute(AppRouteId.PHOTOS)}/${assetId}${searchparams}`
+    ? `${resolveRoute(AppRouteId.PHOTOS, {})}/${assetId}${searchparams}`
     : `${$page.url.pathname.replace(/(\/photos.*)$/, '')}/photos/${assetId}${searchparams}`;
 }
 

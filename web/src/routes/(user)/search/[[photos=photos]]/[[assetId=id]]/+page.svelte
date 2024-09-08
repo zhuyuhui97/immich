@@ -50,7 +50,7 @@
   // The GalleryViewer pushes it's own history state, which causes weird
   // behavior for history.back(). To prevent that we store the previous page
   // manually and navigate back to that.
-  let previousRoute = resolveRoute(AppRouteId.EXPLORE) as string;
+  let previousRoute = resolveRoute(AppRouteId.EXPLORE, {}) as string;
 
   let nextPage: number | null = 1;
   let searchResultAlbums: AlbumResponseDto[] = [];
@@ -89,11 +89,11 @@
     const route = from?.route?.id;
 
     if (isPeopleRoute(route)) {
-      previousRoute = resolveRoute(AppRouteId.PHOTOS);
+      previousRoute = resolveRoute(AppRouteId.PHOTOS, {});
     }
 
     if (isAlbumsRoute(route)) {
-      previousRoute = resolveRoute(AppRouteId.EXPLORE);
+      previousRoute = resolveRoute(AppRouteId.EXPLORE, {});
     }
 
     tick()
