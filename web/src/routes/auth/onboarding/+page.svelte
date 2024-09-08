@@ -41,14 +41,18 @@
       await goto(resolveRoute(AppRouteId.PHOTOS, {}));
     } else {
       index++;
-      await goto(`${resolveRoute(AppRouteId.AUTH_ONBOARDING, {})}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
+      await goto(
+        `${resolveRoute(AppRouteId.AUTH_ONBOARDING, {})}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`,
+      );
     }
   };
 
   const handlePrevious = async () => {
     if (index >= 1) {
       index--;
-      await goto(`${resolveRoute(AppRouteId.AUTH_ONBOARDING, {})}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`);
+      await goto(
+        `${resolveRoute(AppRouteId.AUTH_ONBOARDING, {})}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[index].name}`,
+      );
     }
   };
 </script>

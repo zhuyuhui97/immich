@@ -1,5 +1,5 @@
 <script lang="ts">
-import { resolveRoute } from '$app/paths';
+  import { resolveRoute } from '$app/paths';
   import { resizeObserver } from '$lib/actions/resize-observer';
   import Icon from '$lib/components/elements/icon.svelte';
   import { AppRouteId, QueryParameter } from '$lib/constants';

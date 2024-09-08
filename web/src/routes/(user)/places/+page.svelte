@@ -31,7 +31,11 @@
     <div class="flex flex-row flex-wrap gap-4">
       {#each places as item (item.id)}
         {@const city = item.exifInfo.city}
-        <a class="relative" href="{resolveRoute(AppRouteId.SEARCH, {})}?{getMetadataSearchQuery({ city })}" draggable="false">
+        <a
+          class="relative"
+          href="{resolveRoute(AppRouteId.SEARCH, {})}?{getMetadataSearchQuery({ city })}"
+          draggable="false"
+        >
           <div
             class="flex w-[calc((100vw-(72px+5rem))/2)] max-w-[156px] justify-center overflow-hidden rounded-xl brightness-75 filter"
           >

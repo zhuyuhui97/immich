@@ -235,7 +235,10 @@
                       values={{ job: $t('admin.storage_template_migration_job') }}
                       let:message
                     >
-                      <a href={resolveRoute(AppRouteId.ADMIN_JOBS, {})} class="text-immich-primary dark:text-immich-dark-primary">
+                      <a
+                        href={resolveRoute(AppRouteId.ADMIN_JOBS, {})}
+                        class="text-immich-primary dark:text-immich-dark-primary"
+                      >
                         {message}
                       </a>
                     </FormatMessage>

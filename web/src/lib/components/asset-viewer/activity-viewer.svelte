@@ -180,7 +180,10 @@
 
               <div class="w-full leading-4 overflow-hidden self-center break-words text-sm">{reaction.comment}</div>
               {#if assetId === undefined && reaction.assetId}
-                <a class="aspect-square w-[75px] h-[75px]" href="{resolveRoute(AppRouteId.ALBUMS, {})}/{albumId}/photos/{reaction.assetId}">
+                <a
+                  class="aspect-square w-[75px] h-[75px]"
+                  href="{resolveRoute(AppRouteId.ALBUMS, {})}/{albumId}/photos/{reaction.assetId}"
+                >
                   <img
                     class="rounded-lg w-[75px] h-[75px] object-cover"
                     src={getAssetThumbnailUrl(reaction.assetId)}

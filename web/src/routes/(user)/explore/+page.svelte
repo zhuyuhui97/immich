@@ -77,7 +77,11 @@
       </div>
       <SingleGridRow class="grid md:grid-auto-fill-36 grid-auto-fill-28 gap-x-4" let:itemCount>
         {#each places.slice(0, itemCount) as item (item.data.id)}
-          <a class="relative" href="{resolveRoute(AppRouteId.SEARCH, {})}?{getMetadataSearchQuery({ city: item.value })}" draggable="false">
+          <a
+            class="relative"
+            href="{resolveRoute(AppRouteId.SEARCH, {})}?{getMetadataSearchQuery({ city: item.value })}"
+            draggable="false"
+          >
             <div class="flex justify-center overflow-hidden rounded-xl brightness-75 filter">
               <img
                 src={getAssetThumbnailUrl({ id: item.data.id, size: AssetMediaSize.Thumbnail })}

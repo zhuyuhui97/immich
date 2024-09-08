@@ -1,6 +1,6 @@
 import { goto } from '$app/navigation';
-import { page } from '$app/stores';
 import { resolveRoute } from '$app/paths';
+import { page } from '$app/stores';
 import { AppRouteId } from '$lib/constants';
 import { getAssetInfo } from '@immich/sdk';
 import type { NavigationTarget } from '@sveltejs/kit';

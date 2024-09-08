@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
-import { resolveRoute } from '$app/paths';
 import { goto } from '$app/navigation';
+import { resolveRoute } from '$app/paths';
 import { foldersStore } from '$lib/stores/folders.store';
 import { purchaseStore } from '$lib/stores/purchase.store';
 import { serverInfo } from '$lib/stores/server-info.store';
