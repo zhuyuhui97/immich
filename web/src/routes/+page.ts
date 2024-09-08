@@ -9,8 +9,6 @@ import { get } from 'svelte/store';
 import { loadUser } from '../lib/utils/auth';
 import type { PageLoad } from './$types';
 
-import * as immich_sdk from '@immich/sdk';
-
 export const ssr = false;
 export const csr = true;
 
