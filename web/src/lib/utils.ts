@@ -1,3 +1,4 @@
+import { base as basePath } from '$app/paths';
 import { NotificationType, notificationController } from '$lib/components/shared-components/notification/notification';
 import { defaultLang, langs, locales } from '$lib/constants';
 import { lang } from '$lib/stores/preferences.store';
@@ -259,7 +260,11 @@ export const makeSharedLinkUrl = (externalDomain: string, key: string) => {
   if (!url.endsWith('/')) {
     url += '/';
   }
-  return `${url}share/${key}`;
+  let base = basePath.replaceAll(/^\//g, '');
+  if (!base.endsWith('/')) {
+    base += '/';
+  }
+  return `${url}${base}share/${key}`;
 };
 
 export const oauth = {
