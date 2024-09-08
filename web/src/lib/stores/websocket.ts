@@ -1,4 +1,5 @@
-import { AppRoute } from '$lib/constants';
+import { resolveRoute } from '$app/paths';
+import { AppRouteId } from '$lib/constants';
 import { handleLogout } from '$lib/utils/auth';
 import { createEventEmitter } from '$lib/utils/eventemitter';
 import type { AssetResponseDto, ServerVersionResponseDto } from '@immich/sdk';
@@ -51,7 +52,7 @@ websocket
   .on('disconnect', () => websocketStore.connected.set(false))
   .on('on_server_version', (serverVersion) => websocketStore.serverVersion.set(serverVersion))
   .on('on_new_release', (releaseVersion) => websocketStore.release.set(releaseVersion))
-  .on('on_session_delete', () => handleLogout(AppRoute.AUTH_LOGIN))
+  .on('on_session_delete', () => handleLogout(resolveRoute(AppRouteId.AUTH_LOGIN, {})))
   .on('connect_error', (e) => console.log('Websocket Connect Error', e));
 
 export const openWebsocketConnection = () => {
