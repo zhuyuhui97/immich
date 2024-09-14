@@ -7394,7 +7394,7 @@
   "info": {
     "title": "Immich",
     "description": "Immich API",
-    "version": "1.114.0",
+    "version": "1.115.0",
     "contact": {}
   },
   "tags": [],
@@ -12243,6 +12243,7 @@
           },
           "livePhotoVideoId": {
             "format": "uuid",
+            "nullable": true,
             "type": "string"
           },
           "longitude": {

@@ -48,7 +48,7 @@
     await goto(`${resolveRoute(AppRouteId.PEOPLE, {})}/${person.id}?${$page.url.searchParams.toString()}`);
   };
 
-  const onSelect = (selected: PersonResponseDto) => {
+  const onSelect = async (selected: PersonResponseDto) => {
     if (selectedPeople.includes(selected)) {
       selectedPeople = selectedPeople.filter((person) => person.id !== selected.id);
       return;
@@ -63,6 +63,10 @@
     }
 
     selectedPeople = [selected, ...selectedPeople];
+
+    if (selectedPeople.length === 1 && !person.name && selected.name) {
+      await handleSwapPeople();
+    }
   };
 
   const handleMerge = async () => {

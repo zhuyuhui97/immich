@@ -70,11 +70,11 @@
       </div>
     {/if}
     <div class="inline-block" use:resizeObserver={({ width }) => (innerWidth = width)}>
-      {#each $memoryStore as memory, index (memory.yearsAgo)}
+      {#each $memoryStore as memory (memory.yearsAgo)}
         {#if memory.assets.length > 0}
           <a
             class="memory-card relative mr-8 inline-block aspect-video h-[215px] rounded-xl"
-            href="{resolveRoute(AppRouteId.MEMORY, {})}?{QueryParameter.MEMORY_INDEX}={index}"
+            href="{resolveRoute(AppRouteId.MEMORY, {})}?{QueryParameter.ID}={memory.assets[0].id}"
           >
             <img
               class="h-full w-full rounded-xl object-cover"

@@ -1,6 +1,6 @@
 /**
  * Immich
- * 1.114.0
+ * 1.115.0
  * DO NOT MODIFY - This file has been generated using oazapfts.
  * See https://www.npmjs.com/package/oazapfts
  */
@@ -427,7 +427,7 @@ export type UpdateAssetDto = {
     isArchived?: boolean;
     isFavorite?: boolean;
     latitude?: number;
-    livePhotoVideoId?: string;
+    livePhotoVideoId?: string | null;
     longitude?: number;
     rating?: number;
 };
