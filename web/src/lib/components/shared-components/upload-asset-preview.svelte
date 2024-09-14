@@ -16,6 +16,7 @@
     mdiLoading,
     mdiOpenInNew,
     mdiRestart,
+    mdiTrashCan,
   } from '@mdi/js';
   import { t } from 'svelte-i18n';
   import { fade } from 'svelte/transition';
@@ -29,6 +30,12 @@
   const handleRetry = async (uploadAsset: UploadAsset) => {
     uploadAssetsStore.removeItem(uploadAsset.id);
     await fileUploadHandler([uploadAsset.file], uploadAsset.albumId);
+  };
+
+  const asLink = (asset: UploadAsset) => {
+    return asset.isTrashed
+      ? `${resolveRoute(AppRouteId.TRASH, {})}/${asset.assetId}`
+      : `${resolveRoute(AppRouteId.PHOTOS, {})}/${uploadAsset.assetId}`;
   };
 </script>
 
@@ -46,7 +53,11 @@
       {:else if uploadAsset.state === UploadState.ERROR}
         <Icon path={mdiAlertCircle} size="24" class="text-immich-error" title={$t('error')} />
       {:else if uploadAsset.state === UploadState.DUPLICATED}
-        <Icon path={mdiAlertCircle} size="24" class="text-immich-warning" title={$t('asset_skipped')} />
+        {#if uploadAsset.isTrashed}
+          <Icon path={mdiTrashCan} size="24" class="text-gray-500" title={$t('asset_skipped_in_trash')} />
+        {:else}
+          <Icon path={mdiAlertCircle} size="24" class="text-immich-warning" title={$t('asset_skipped')} />
+        {/if}
       {:else if uploadAsset.state === UploadState.DONE}
         <Icon path={mdiCheckCircle} size="24" class="text-immich-success" title={$t('asset_uploaded')} />
       {/if}
@@ -57,7 +68,7 @@
     {#if uploadAsset.state === UploadState.DUPLICATED && uploadAsset.assetId}
       <div class="flex items-center justify-between gap-1">
         <a
-          href="{resolveRoute(AppRouteId.PHOTOS, {})}/{uploadAsset.assetId}"
+          href={asLink(uploadAsset)}
           target="_blank"
           rel="noopener noreferrer"
           class=""

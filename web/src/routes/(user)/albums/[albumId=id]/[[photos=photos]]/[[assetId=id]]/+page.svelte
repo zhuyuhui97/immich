@@ -129,7 +129,7 @@
   const assetInteractionStore = createAssetInteractionStore();
   const { isMultiSelectState, selectedAssets } = assetInteractionStore;
 
-  $: timelineStore = new AssetStore({ isArchived: false }, albumId);
+  $: timelineStore = new AssetStore({ isArchived: false, withPartners: true }, albumId);
   const timelineInteractionStore = createAssetInteractionStore();
   const { selectedAssets: timelineSelected } = timelineInteractionStore;
 

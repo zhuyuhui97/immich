@@ -8,13 +8,14 @@
   import { preferences, user } from '$lib/stores/user.store';
   import { handleError } from '$lib/utils/handle-error';
   import { deleteProfileImage, updateMyPreferences, type UserAvatarColor } from '@immich/sdk';
-  import { mdiCog, mdiLogout, mdiPencil } from '@mdi/js';
+  import { mdiCog, mdiLogout, mdiPencil, mdiWrench } from '@mdi/js';
   import { createEventDispatcher } from 'svelte';
   import { fade } from 'svelte/transition';
   import { NotificationType, notificationController } from '../notification/notification';
   import UserAvatar from '../user-avatar.svelte';
   import AvatarSelector from './avatar-selector.svelte';
   import { t } from 'svelte-i18n';
+  import { page } from '$app/stores';
 
   let isShowSelectAvatar = false;
 
@@ -47,7 +48,7 @@
   in:fade={{ duration: 100 }}
   out:fade={{ duration: 100 }}
   id="account-info-panel"
-  class="absolute right-[25px] top-[75px] z-[100] w-[360px] rounded-3xl bg-gray-200 shadow-lg dark:border dark:border-immich-dark-gray dark:bg-immich-dark-gray"
+  class="absolute right-[25px] top-[75px] z-[100] w-[min(360px,100vw-50px)] rounded-3xl bg-gray-200 shadow-lg dark:border dark:border-immich-dark-gray dark:bg-immich-dark-gray"
   use:focusTrap
 >
   <div
@@ -74,19 +75,37 @@
       <p class="text-sm text-gray-500 dark:text-immich-dark-fg">{$user.email}</p>
     </div>
 
-    <Button
-      href={resolveRoute(AppRouteId.USER_SETTINGS, {})}
-      on:click={() => dispatch('close')}
-      color="dark-gray"
-      size="sm"
-      shadow={false}
-      border
-    >
-      <div class="flex place-content-center place-items-center gap-2 px-2">
-        <Icon path={mdiCog} size="18" />
-        {$t('account_settings')}
-      </div>
-    </Button>
+    <div class="flex flex-col gap-1">
+      <Button
+        href={resolveRoute(AppRouteId.USER_SETTINGS, {})}
+        on:click={() => dispatch('close')}
+        color="dark-gray"
+        size="sm"
+        shadow={false}
+        border
+      >
+        <div class="flex place-content-center place-items-center text-center gap-2 px-2">
+          <Icon path={mdiCog} size="18" ariaHidden />
+          {$t('account_settings')}
+        </div>
+      </Button>
+      {#if $user.isAdmin}
+        <Button
+          href={resolveRoute(AppRouteId.ADMIN_USER_MANAGEMENT, {})}
+          on:click={() => dispatch('close')}
+          color="dark-gray"
+          size="sm"
+          shadow={false}
+          border
+          aria-current={$page.url.pathname.includes('/admin') ? 'page' : undefined}
+        >
+          <div class="flex place-content-center place-items-center text-center gap-2 px-2">
+            <Icon path={mdiWrench} size="18" ariaHidden />
+            {$t('administration')}
+          </div>
+        </Button>
+      {/if}
+    </div>
   </div>
 
   <div class="mb-4 flex flex-col">
