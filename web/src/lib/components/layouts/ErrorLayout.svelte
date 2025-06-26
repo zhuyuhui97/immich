@@ -24,7 +24,7 @@
 <div class="h-dvh w-dvw">
   <section>
     <div class="flex place-items-center border-b px-6 py-4 dark:border-b-immich-dark-gray">
-      <a class="flex place-items-center gap-2 hover:cursor-pointer" href="/photos">
+      <a class="flex place-items-center gap-2 hover:cursor-pointer" href="#/photos">
         <ImmichLogo class="h-[50px]" />
       </a>
     </div>

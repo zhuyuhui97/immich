@@ -113,7 +113,7 @@
       await goto(AppRoute.PHOTOS);
     } else {
       await goto(
-        `${AppRoute.AUTH_ONBOARDING}?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[nextStepIndex].name}`,
+        `?${QueryParameter.ONBOARDING_STEP}=${onboardingSteps[nextStepIndex].name}${AppRoute.AUTH_ONBOARDING}`,
       );
     }
   };

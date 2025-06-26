@@ -62,7 +62,7 @@
         ($featureFlags.oauthAutoLaunch && !oauth.isAutoLaunchDisabled(globalThis.location)) ||
         oauth.isAutoLaunchEnabled(globalThis.location)
       ) {
-        await goto(`${AppRoute.AUTH_LOGIN}?autoLaunch=0`, { replaceState: true });
+        await goto(`?autoLaunch=0${AppRoute.AUTH_LOGIN}`, { replaceState: true });
         await oauth.authorize(globalThis.location);
         return;
       }

@@ -14,13 +14,15 @@ const config = {
   },
   preprocess: vitePreprocess(),
   kit: {
-    paths: {
-      relative: false,
-    },
+    router: { type: 'hash' },
     adapter: adapter({
       fallback: 'index.html',
       precompress: true,
     }),
+    paths: {
+      assets: "http://REPLACEME",
+      relative: true,
+    },
     alias: {
       $lib: 'src/lib',
       '$lib/*': 'src/lib/*',

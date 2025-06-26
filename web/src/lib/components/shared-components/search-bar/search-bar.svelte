@@ -45,7 +45,7 @@
 
     closeDropdown();
     searchStore.isSearchEnabled = false;
-    await goto(`${AppRoute.SEARCH}?${params}`);
+    await goto(`?${params}${AppRoute.SEARCH}`);
   };
 
   const clearSearchTerm = (searchTerm: string) => {

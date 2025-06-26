@@ -3,7 +3,7 @@ import { purchaseStore } from '$lib/stores/purchase.store';
 import { preferences as preferences$, user as user$ } from '$lib/stores/user.store';
 import { userInteraction } from '$lib/stores/user.svelte';
 import { getAboutInfo, getMyPreferences, getMyUser, getStorage } from '@immich/sdk';
-import { redirect } from '@sveltejs/kit';
+import { redirect } from "$lib/utils";
 import { DateTime } from 'luxon';
 import { get } from 'svelte/store';
 import { AppRoute } from '../constants';

@@ -31,7 +31,7 @@ export interface Events {
 }
 
 const websocket: Socket<Events> = io({
-  path: '/api/socket.io',
+  path: `${globalThis.location.pathname.endsWith('/') ? globalThis.location.pathname.slice(0, -1) : globalThis.location.pathname}/api/socket.io`,
   transports: ['websocket'],
   reconnection: true,
   forceNew: true,

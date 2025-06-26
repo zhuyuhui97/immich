@@ -1,5 +1,5 @@
 import { AppRoute } from '$lib/constants';
-import { redirect } from '@sveltejs/kit';
+import { redirect } from "$lib/utils";
 import type { PageLoad } from './$types';
 
 enum LinkTarget {
@@ -42,7 +42,7 @@ export const load = (({ url }) => {
           redirectUrl.searchParams.append('activationKey', activationKey);
         }
 
-        return redirect(302, redirectUrl);
+        return redirect(302, `?${redirectUrl.searchParams.toString()}${redirectUrl.hash}`);
       }
 
       break;

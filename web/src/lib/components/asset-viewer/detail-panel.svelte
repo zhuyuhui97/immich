@@ -240,9 +240,9 @@
           {#if showingHiddenPeople || !person.isHidden}
             <a
               class="w-[90px]"
-              href="{AppRoute.PEOPLE}/{person.id}?{QueryParameter.PREVIOUS_ROUTE}={currentAlbum?.id
-                ? `${AppRoute.ALBUMS}/${currentAlbum?.id}`
-                : AppRoute.PHOTOS}"
+              href="?{QueryParameter.PREVIOUS_ROUTE}={currentAlbum?.id
+                                    ? `${AppRoute.ALBUMS.slice(1)}/${currentAlbum?.id}`
+                                    : AppRoute.PHOTOS.slice(1)}{AppRoute.PEOPLE}/{person.id}"
               onfocus={() => ($boundingBoxesArray = people[index].faces)}
               onblur={() => ($boundingBoxesArray = [])}
               onmouseover={() => ($boundingBoxesArray = people[index].faces)}
@@ -429,10 +429,10 @@
           {#if asset.exifInfo?.make || asset.exifInfo?.model}
             <p>
               <a
-                href="{AppRoute.SEARCH}?{getMetadataSearchQuery({
-                  ...(asset.exifInfo?.make ? { make: asset.exifInfo.make } : {}),
-                  ...(asset.exifInfo?.model ? { model: asset.exifInfo.model } : {}),
-                })}"
+                href="?{getMetadataSearchQuery({
+                                        ...(asset.exifInfo?.make ? { make: asset.exifInfo.make } : {}),
+                                        ...(asset.exifInfo?.model ? { model: asset.exifInfo.model } : {}),
+                                      })}{AppRoute.SEARCH}"
                 title="{$t('search_for')} {asset.exifInfo.make || ''} {asset.exifInfo.model || ''}"
                 class="hover:dark:text-immich-dark-primary hover:text-immich-primary"
               >
@@ -446,7 +446,7 @@
             <div class="flex gap-2 text-sm">
               <p>
                 <a
-                  href="{AppRoute.SEARCH}?{getMetadataSearchQuery({ lensModel: asset.exifInfo.lensModel })}"
+                  href="?{getMetadataSearchQuery({ lensModel: asset.exifInfo.lensModel })}{AppRoute.SEARCH}"
                   title="{$t('search_for')} {asset.exifInfo.lensModel}"
                   class="hover:dark:text-immich-dark-primary hover:text-immich-primary line-clamp-1"
                 >

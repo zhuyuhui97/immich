@@ -83,7 +83,7 @@
   const assetInteraction = new AssetInteraction();
   let progressBarController: Tween<number> | undefined = $state(undefined);
   let videoPlayer: HTMLVideoElement | undefined = $state();
-  const asHref = (asset: { id: string }) => `?${QueryParameter.ID}=${asset.id}`;
+  const asHref = (asset: { id: string }) => `${QueryParameter.ID}=${asset.id}`;
   const handleNavigate = async (asset?: { id: string }) => {
     if ($isViewing) {
       return asset;
@@ -93,7 +93,7 @@
       return;
     }
 
-    await goto(asHref(asset));
+    await addSearchParams(asHref(asset));
   };
   const setProgressDuration = (asset: TimelineAsset) => {
     if (asset.isVideo) {
@@ -375,7 +375,7 @@
         </div>
 
         {#each current.memory.assets as asset, index (asset.id)}
-          <a class="relative w-full py-2" href={asHref(asset)} aria-label={$t('view')}>
+          <a class="relative w-full py-2" href="?{asHref(asset)}{window.location.hash}" aria-label={$t('view')}>
             <span class="absolute start-0 h-[2px] w-full bg-gray-500"></span>
             <span class="absolute start-0 h-[2px] bg-white" style:width={`${toProgressPercentage(index)}%`}></span>
           </a>
@@ -521,7 +521,7 @@
 
               <div>
                 <IconButton
-                  href="{AppRoute.PHOTOS}?at={current.asset.id}"
+                  href="?at={current.asset.id}{AppRoute.PHOTOS}"
                   icon={mdiImageSearch}
                   aria-label={$t('view_in_timeline')}
                   color="secondary"

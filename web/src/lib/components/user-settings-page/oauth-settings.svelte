@@ -11,6 +11,8 @@
   import { t } from 'svelte-i18n';
   import { Button } from '@immich/ui';
 
+  import { addSearchParams } from '$lib/utils';
+
   interface Props {
     user: UserAdminResponseDto;
   }
@@ -33,7 +35,7 @@
       } catch (error) {
         handleError(error, $t('errors.unable_to_link_oauth_account'));
       } finally {
-        await goto('?open=oauth');
+        await addSearchParams('open=oauth');
       }
     }
 

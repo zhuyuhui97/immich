@@ -25,6 +25,7 @@ import {
   type UserResponseDto,
 } from '@immich/sdk';
 import { mdiCogRefreshOutline, mdiDatabaseRefreshOutline, mdiHeadSyncOutline, mdiImageRefreshOutline } from '@mdi/js';
+import { redirect as svelteRedirect } from '@sveltejs/kit';
 import { init, register, t } from 'svelte-i18n';
 import { derived, get } from 'svelte/store';
 
@@ -258,7 +259,7 @@ export const copyToClipboard = async (secret: string) => {
 };
 
 export const makeSharedLinkUrl = (key: string) => {
-  return new URL(`share/${key}`, get(serverConfig).externalDomain || globalThis.location.origin).href;
+  return new URL(`${globalThis.location.pathname.endsWith('/') ? globalThis.location.pathname.slice(0, -1) : globalThis.location.pathname}/#/share/${key}`, get(serverConfig).externalDomain || globalThis.location.origin).href;
 };
 
 export const oauth = {
@@ -342,3 +343,14 @@ export const withError = async <T>(fn: () => Promise<T>): Promise<[undefined, T]
 
 // eslint-disable-next-line unicorn/prefer-code-point
 export const decodeBase64 = (data: string) => Uint8Array.from(atob(data), (c) => c.charCodeAt(0));
+
+export function redirect(status: 300 | 301 | 302 | 303 | 304 | 305 | 306 | 307 | 308 | ({} & number), location: string ) {
+  return svelteRedirect(status,`${globalThis.location.pathname.endsWith('/') ? globalThis.location.pathname.slice(0, -1) : globalThis.location.pathname}/${location}`);
+}
+
+export async function addSearchParams(searchParams: string): Promise<void> {
+  return new Promise<void>((resolve) => {
+    globalThis.history.replaceState(null, '', `${globalThis.location.pathname}?${searchParams}${globalThis.location.hash}`);
+    resolve();
+  });
+}

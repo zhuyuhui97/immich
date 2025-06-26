@@ -39,6 +39,7 @@
     ScaleControl,
     type Map,
   } from 'svelte-maplibre';
+  import { addSearchParams } from '$lib/utils';
 
   interface Props {
     mapMarkers?: MapMarkerResponseDto[];
@@ -75,6 +76,25 @@
   }: Props = $props();
 
   const initialCenter = center;
+  let position = globalThis.location.search.slice(1).split('&')
+      .map(part => part.split('='))
+      .find(part => part[0] === "position");
+  if(position && position[1]) {
+    let parts = (position ? position[1] || '' : '').split('/');
+    if (parts.length >= 3) {
+      let zoomValue = Number(parts[0]);
+      let lat = Number(parts[2]);
+      let lng = Number(parts[1]);
+
+      if (!Number.isNaN(zoomValue)) {
+        zoom = zoomValue;
+      }
+      if (!Number.isNaN(lat) && !Number.isNaN(lng)) {
+        center = [lat, lng];
+      }
+
+    }
+  }
 
   let map: maplibregl.Map | undefined = $state();
   let marker: maplibregl.Marker | null = null;
@@ -266,6 +286,7 @@
   class="h-full {rounded ? 'rounded-2xl' : 'rounded-none'}"
   {zoom}
   center={initialCenter}
+  updateHash={(url) => addSearchParams(`position=${url.hash.slice(1)}`)}
   attributionControl={false}
   diffStyleUpdates={true}
   onload={(event) => {

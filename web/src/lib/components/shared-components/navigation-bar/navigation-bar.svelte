@@ -94,7 +94,7 @@
           />
         {/if}
 
-        {#if !page.url.pathname.includes('/admin') && showUploadButton && onUploadClick}
+        {#if !page.url.hash.includes('/admin') && showUploadButton && onUploadClick}
           <Button
             leadingIcon={mdiTrayArrowUp}
             onclick={onUploadClick}
