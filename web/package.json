@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --host 0.0.0.0 --port 3000",
-    "build": "vite build & node ./replace-assets.js",
-    "build:stats": "BUILD_STATS=true vite build & node ./replace-assets.js",
+    "build": "vite build && node ./replace-assets.js",
+    "build:stats": "BUILD_STATS=true vite build && node ./replace-assets.js",
     "package": "svelte-kit package",
     "preview": "vite preview",
     "check:svelte": "svelte-check --no-tsconfig --fail-on-warnings --compiler-warnings 'reactive_declaration_non_reactive_property:ignore' --ignore src/lib/components/photos-page/asset-grid.svelte",
