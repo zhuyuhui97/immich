@@ -48,19 +48,19 @@
 <Sidebar ariaLabel={$t('primary')}>
   <SideBarLink
     title={$t('photos')}
-    routeId="/(user)/photos"
+    routeId="/(user)/#/photos"
     bind:isSelected={isPhotosSelected}
     icon={isPhotosSelected ? mdiImageMultiple : mdiImageMultipleOutline}
   ></SideBarLink>
 
   {#if $featureFlags.search}
-    <SideBarLink title={$t('explore')} routeId="/(user)/explore" icon={mdiMagnify} />
+    <SideBarLink title={$t('explore')} routeId="/(user)/#/explore" icon={mdiMagnify} />
   {/if}
 
   {#if $featureFlags.map}
     <SideBarLink
       title={$t('map')}
-      routeId="/(user)/map"
+      routeId="/(user)/#/map"
       bind:isSelected={isMapSelected}
       icon={isMapSelected ? mdiMap : mdiMapOutline}
     />
@@ -69,19 +69,19 @@
   {#if $preferences.people.enabled && $preferences.people.sidebarWeb}
     <SideBarLink
       title={$t('people')}
-      routeId="/(user)/people"
+      routeId="/(user)/#/people"
       bind:isSelected={isPeopleSelected}
       icon={isPeopleSelected ? mdiAccount : mdiAccountOutline}
     />
   {/if}
 
   {#if $preferences.sharedLinks.enabled && $preferences.sharedLinks.sidebarWeb}
-    <SideBarLink title={$t('shared_links')} routeId="/(user)/shared-links" icon={mdiLink} />
+    <SideBarLink title={$t('shared_links')} routeId="/(user)/#/shared-links" icon={mdiLink} />
   {/if}
 
   <SideBarLink
     title={$t('sharing')}
-    routeId="/(user)/sharing"
+    routeId="/(user)/#/sharing"
     icon={isSharingSelected ? mdiAccountMultiple : mdiAccountMultipleOutline}
     bind:isSelected={isSharingSelected}
   ></SideBarLink>
@@ -90,14 +90,14 @@
 
   <SideBarLink
     title={$t('favorites')}
-    routeId="/(user)/favorites"
+    routeId="/(user)/#/favorites"
     icon={isFavoritesSelected ? mdiHeart : mdiHeartOutline}
     bind:isSelected={isFavoritesSelected}
   ></SideBarLink>
 
   <SideBarLink
     title={$t('albums')}
-    routeId="/(user)/albums"
+    routeId="/(user)/#/albums"
     icon={mdiImageAlbum}
     flippedLogo
     bind:dropdownOpen={$recentAlbumsDropdown}
@@ -110,30 +110,30 @@
   </SideBarLink>
 
   {#if $preferences.tags.enabled && $preferences.tags.sidebarWeb}
-    <SideBarLink title={$t('tags')} routeId="/(user)/tags" icon={mdiTagMultipleOutline} flippedLogo />
+    <SideBarLink title={$t('tags')} routeId="/(user)/#/tags" icon={mdiTagMultipleOutline} flippedLogo />
   {/if}
 
   {#if $preferences.folders.enabled && $preferences.folders.sidebarWeb}
-    <SideBarLink title={$t('folders')} routeId="/(user)/folders" icon={mdiFolderOutline} flippedLogo />
+    <SideBarLink title={$t('folders')} routeId="/(user)/#/folders" icon={mdiFolderOutline} flippedLogo />
   {/if}
 
   <SideBarLink
     title={$t('utilities')}
-    routeId="/(user)/utilities"
+    routeId="/(user)/#/utilities"
     bind:isSelected={isUtilitiesSelected}
     icon={isUtilitiesSelected ? mdiToolbox : mdiToolboxOutline}
   ></SideBarLink>
 
   <SideBarLink
     title={$t('archive')}
-    routeId="/(user)/archive"
+    routeId="/(user)/#/archive"
     bind:isSelected={isArchiveSelected}
     icon={isArchiveSelected ? mdiArchiveArrowDown : mdiArchiveArrowDownOutline}
   ></SideBarLink>
 
   <SideBarLink
     title={$t('locked_folder')}
-    routeId="/(user)/locked"
+    routeId="/(user)/#/locked"
     bind:isSelected={isLockedFolderSelected}
     icon={isLockedFolderSelected ? mdiLock : mdiLockOutline}
   ></SideBarLink>
@@ -141,7 +141,7 @@
   {#if $featureFlags.trash}
     <SideBarLink
       title={$t('trash')}
-      routeId="/(user)/trash"
+      routeId="/(user)/#/trash"
       bind:isSelected={isTrashSelected}
       icon={isTrashSelected ? mdiTrashCan : mdiTrashCanOutline}
     ></SideBarLink>
