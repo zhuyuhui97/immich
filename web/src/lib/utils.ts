@@ -185,7 +185,7 @@ export const getAssetOriginalUrl = (options: string | AssetUrlOptions) => {
     options = { id: options };
   }
   const { id, cacheKey } = options;
-  return createUrl(getAssetOriginalPath(id), { key: authManager.key, c: cacheKey });
+  return createUrl(getAssetOriginalPath(id), { ...authManager.params, c: cacheKey });
 };
 
 export const getAssetThumbnailUrl = (options: string | (AssetUrlOptions & { size?: AssetMediaSize })) => {
@@ -193,7 +193,7 @@ export const getAssetThumbnailUrl = (options: string | (AssetUrlOptions & { size
     options = { id: options };
   }
   const { id, size, cacheKey } = options;
-  return createUrl(getAssetThumbnailPath(id), { size, key: authManager.key, c: cacheKey });
+  return createUrl(getAssetThumbnailPath(id), { ...authManager.params, size, c: cacheKey });
 };
 
 export const getAssetPlaybackUrl = (options: string | AssetUrlOptions) => {
@@ -201,7 +201,7 @@ export const getAssetPlaybackUrl = (options: string | AssetUrlOptions) => {
     options = { id: options };
   }
   const { id, cacheKey } = options;
-  return createUrl(getAssetPlaybackPath(id), { key: authManager.key, c: cacheKey });
+  return createUrl(getAssetPlaybackPath(id), { ...authManager.params, c: cacheKey });
 };
 
 export const getProfileImageUrl = (user: UserResponseDto) =>
@@ -258,8 +258,11 @@ export const copyToClipboard = async (secret: string) => {
   }
 };
 
-export const makeSharedLinkUrl = (key: string) => {
-  return new URL(`${globalThis.location.pathname.endsWith('/') ? globalThis.location.pathname.slice(0, -1) : globalThis.location.pathname}/#/share/${key}`, get(serverConfig).externalDomain || globalThis.location.origin).href;
+export const makeSharedLinkUrl = (sharedLink: SharedLinkResponseDto) => {
+
+  const subpath = globalThis.location.pathname.endsWith('/') ? globalThis.location.pathname.slice(0, -1) + "/" : "";
+  const path = sharedLink.slug ? `#/s/${sharedLink.slug}` : `#/share/${sharedLink.key}`;
+  return new URL(subpath + path, get(serverConfig).externalDomain || globalThis.location.origin).href;
 };
 
 export const oauth = {

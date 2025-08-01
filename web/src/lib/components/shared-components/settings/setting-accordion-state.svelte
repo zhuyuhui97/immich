@@ -6,12 +6,12 @@
 </script>
 
 <script lang="ts">
-  import { writable, type Writable } from 'svelte/store';
-  import { createContext } from '$lib/utils/context';
   import { page } from '$app/state';
-  import { goto } from '$app/navigation';
+  import { addSearchParams, handlePromiseError } from '$lib/utils';
+  import { createContext } from '$lib/utils/context';
   import type { Snippet } from 'svelte';
-  import { handlePromiseError,addSearchParams } from '$lib/utils';
+  import { SvelteURLSearchParams } from 'svelte/reactivity';
+  import { writable, type Writable } from 'svelte/store';
 
   const getParamValues = (param: string) => {
     return new Set((page.url.searchParams.get(param) || '').split(' ').filter((x) => x !== ''));
@@ -26,7 +26,7 @@
   let { queryParam, state = writable(getParamValues(queryParam)), children }: Props = $props();
   setAccordionState(state);
 
-  const searchParams = new URLSearchParams(page.url.searchParams);
+  const searchParams = new SvelteURLSearchParams(page.url.searchParams);
 
   $effect(() => {
     if ($state.size > 0) {

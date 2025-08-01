@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:immich_mobile/domain/interfaces/store.interface.dart';
 import 'package:immich_mobile/domain/models/store.model.dart';
 import 'package:immich_mobile/domain/services/store.service.dart';
+import 'package:immich_mobile/infrastructure/repositories/store.repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../infrastructure/repository.mock.dart';
@@ -15,7 +15,7 @@ final _kBackupFailedSince = DateTime.utc(2023);
 
 void main() {
   late StoreService sut;
-  late IStoreRepository mockStoreRepo;
+  late IsarStoreRepository mockStoreRepo;
   late StreamController<StoreDto<Object>> controller;
 
   setUp(() async {
@@ -73,10 +73,7 @@ void main() {
     });
 
     test('Throws StoreKeyNotFoundException for nonexistent keys', () {
-      expect(
-        () => sut.get(StoreKey.currentUser),
-        throwsA(isA<StoreKeyNotFoundException>()),
-      );
+      expect(() => sut.get(StoreKey.currentUser), throwsA(isA<StoreKeyNotFoundException>()));
     });
 
     test('Returns the stored value for the given key or the defaultValue', () {
@@ -86,24 +83,18 @@ void main() {
 
   group('Store Service put:', () {
     setUp(() {
-      when(() => mockStoreRepo.insert<String>(any<StoreKey<String>>(), any()))
-          .thenAnswer((_) async => true);
+      when(() => mockStoreRepo.insert<String>(any<StoreKey<String>>(), any())).thenAnswer((_) async => true);
     });
 
     test('Skip insert when value is not modified', () async {
       await sut.put(StoreKey.accessToken, _kAccessToken);
-      verifyNever(
-        () => mockStoreRepo.insert<String>(StoreKey.accessToken, any()),
-      );
+      verifyNever(() => mockStoreRepo.insert<String>(StoreKey.accessToken, any()));
     });
 
     test('Insert value when modified', () async {
       final newAccessToken = _kAccessToken.toUpperCase();
       await sut.put(StoreKey.accessToken, newAccessToken);
-      verify(
-        () =>
-            mockStoreRepo.insert<String>(StoreKey.accessToken, newAccessToken),
-      ).called(1);
+      verify(() => mockStoreRepo.insert<String>(StoreKey.accessToken, newAccessToken)).called(1);
       expect(sut.tryGet(StoreKey.accessToken), newAccessToken);
     });
   });
@@ -113,8 +104,7 @@ void main() {
 
     setUp(() {
       valueController = StreamController<String?>.broadcast();
-      when(() => mockStoreRepo.watch<String>(any<StoreKey<String>>()))
-          .thenAnswer((_) => valueController.stream);
+      when(() => mockStoreRepo.watch<String>(any<StoreKey<String>>())).thenAnswer((_) => valueController.stream);
     });
 
     tearDown(() async {
@@ -123,12 +113,7 @@ void main() {
 
     test('Watches a specific key for changes', () async {
       final stream = sut.watch(StoreKey.accessToken);
-      final events = <String?>[
-        _kAccessToken,
-        _kAccessToken.toUpperCase(),
-        null,
-        _kAccessToken.toLowerCase(),
-      ];
+      final events = <String?>[_kAccessToken, _kAccessToken.toUpperCase(), null, _kAccessToken.toLowerCase()];
 
       expectLater(stream, emitsInOrder(events));
 
@@ -143,14 +128,12 @@ void main() {
 
   group('Store Service delete:', () {
     setUp(() {
-      when(() => mockStoreRepo.delete<String>(any<StoreKey<String>>()))
-          .thenAnswer((_) async => true);
+      when(() => mockStoreRepo.delete<String>(any<StoreKey<String>>())).thenAnswer((_) async => true);
     });
 
     test('Removes the value from the DB', () async {
       await sut.delete(StoreKey.accessToken);
-      verify(() => mockStoreRepo.delete<String>(StoreKey.accessToken))
-          .called(1);
+      verify(() => mockStoreRepo.delete<String>(StoreKey.accessToken)).called(1);
     });
 
     test('Removes the value from the cache', () async {
